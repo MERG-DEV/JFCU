@@ -1,0 +1,30 @@
+.cbus-log .content {
+	-fx-background-color : lightyellow;
+}
+
+.lhs-title {
+	-fx-font-weight : bold;
+	-fx-font-size : 1.3em;
+}
+.rhs-title {
+	-fx-font-weight : bold;
+	-fx-font-size : 1.3em;
+}
+
+#bottomBox  {
+	-fx-spacing	: 5px;
+}
+.bottomLabel {
+	-fx-label-padding : 0 5px 0 5px;
+	-fx-border-color : #808080;
+	-fx-border-style: solid;
+}
+
+.nvgroup {
+	-fx-border-color : #808080;
+	-fx-border-style: solid;
+}
+
+.popup {
+	-fx-background-color : #e0e0e0;
+}
