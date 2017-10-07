@@ -1,0 +1,26 @@
+<layout>
+	<description>Ian's test layout</description>
+	<version>1</version>
+	<modules>
+		<module>
+			<name>LC controller</name>
+			<nodenumber>1111</nodenumber>
+			<moduletypename>CANMIO</moduletypename>
+			<moduletypeid>32</moduletypeid>
+			<version>1b</version>
+			<numnv>127</numnv>
+			<params>
+			</params>
+			<nvs>
+			</nvs>
+			<events>
+			</events>
+		</module>
+	</modules>
+	
+	<events>
+		<event>
+		</event>
+	</events>
+	
+</layout>

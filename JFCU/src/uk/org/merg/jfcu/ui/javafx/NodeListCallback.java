@@ -5,20 +5,19 @@ import co.uk.ccmr.cbus.sniffer.Opc;
 import co.uk.ccmr.cbus.sniffer.CbusEvent.MinPri;
 import co.uk.ccmr.cbus.sniffer.CbusEvent.MjPri;
 import javafx.beans.binding.Bindings;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -35,6 +34,7 @@ import uk.org.merg.jfcu.modulemodel.ModuleType;
 import uk.org.merg.jfcu.modulemodel.NvBits;
 import uk.org.merg.jfcu.modulemodel.NvByte;
 import uk.org.merg.jfcu.modulemodel.NvGroup;
+import uk.org.merg.jfcu.modulemodel.NvItem;
 
 public class NodeListCallback implements Callback<TableView<Module>, TableRow<Module>> {
 	public TableRow<Module> call(TableView<Module> tableView) {
@@ -71,12 +71,7 @@ public class NodeListCallback implements Callback<TableView<Module>, TableRow<Mo
 				final Popup popup = new Popup();
 				popup.setAutoHide(true);
 				popup.setAutoFix(true);
-/*				// Calculate popup placement coordinates.
-				Node eventSource = (Node) event.getSource();
-				Bounds sourceNodeBounds = eventSource.localToScreen(eventSource.getBoundsInLocal());
-				popup.setX(sourceNodeBounds.getMinX() - 5.0);
-				popup.setY(sourceNodeBounds.getMaxY() + 5.0);
-*/				
+		
 				VBox popupBox = new VBox();
 				popupBox.getStyleClass().add("popup");
 				VBox scrollBox = new VBox();
@@ -128,15 +123,25 @@ public class NodeListCallback implements Callback<TableView<Module>, TableRow<Mo
 								// the value
 								Byte v = m.getNvs().get(nvByte.getId());
 								if (v == null) v = 0;
-								if (countBits(nvBits.getBitmask()) == 1) {
+								if ((nvBits.getNvType().getUi() == null) || "text".equals(nvBits.getNvType().getUi())) {
+									TextField valueCell = new TextField(""+(v&nvBits.getBitmask()));
+									valueCell.getStyleClass().add("nvGroupCell");
+									valueCell.setMaxWidth(40);
+									nvGrid.add(valueCell, 2,  idx);
+								} else if ("choice".equals(nvBits.getNvType().getUi())) {
+									ComboBox<String> combo = new ComboBox<String>();
+									for (NvItem i : nvBits.getNvType().getNvChoice().getNvitems()) {
+										combo.getItems().add(i.getSetting());
+										if (v == i.getValue()) {
+											combo.getSelectionModel().select(i.getSetting());
+										}
+									}
+									combo.getStyleClass().add("nvGroupCell");
+									nvGrid.add(combo, 2,  idx);
+								} else if ("checkbox".equals(nvBits.getNvType().getUi())) {
 									CheckBox valueCell = new CheckBox();
 									valueCell.setSelected((v&nvBits.getBitmask()) != 0);
 									valueCell.getStyleClass().add("nvGroupCell");
-									nvGrid.add(valueCell, 2,  idx);
-								} else {
-									TextField valueCell = new TextField(""+(v&nvBits.getBitmask()));
-									valueCell.getStyleClass().add("nvGroupCell");
-									valueCell.setPrefWidth(30);
 									nvGrid.add(valueCell, 2,  idx);
 								}
 								
@@ -155,14 +160,23 @@ public class NodeListCallback implements Callback<TableView<Module>, TableRow<Mo
 					scrollPane.setContent(scrollBox);
 					scrollPane.setPrefHeight(600);
 					
-					HBox buttons = new HBox();
-					Button dismiss = new Button("Dismiss");
-					dismiss.setOnAction(new EventHandler<ActionEvent>() {
+					ButtonBar buttons = new ButtonBar();
+					Button b = new Button("Write");
+					b.setOnAction(new EventHandler<ActionEvent>() {
 						@Override
 						public void handle(ActionEvent arg0) {
 							popup.hide();
 						}});
-					buttons.getChildren().add(dismiss);
+					ButtonBar.setButtonData(b, ButtonData.YES);
+					buttons.getButtons().add(b);
+					b = new Button("Cancel");
+					b.setOnAction(new EventHandler<ActionEvent>() {
+						@Override
+						public void handle(ActionEvent arg0) {
+							popup.hide();
+						}});
+					ButtonBar.setButtonData(b, ButtonData.NO);
+					buttons.getButtons().add(b);
 					
 					popupBox.getChildren().addAll(scrollPane, buttons);
 					popup.getContent().addAll(popupBox);

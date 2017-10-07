@@ -20,11 +20,6 @@ public class Globals {
 	public static StyledDocument log;
 	public static AttributeSet redAset;
 	public static AttributeSet greenAset;
-	public enum UiChoice {
-		SWING,
-		JAVAFX
-	};
-	public static UiChoice ui;
 	
 	public static ModuleTypeNames moduleTypeNames;
 	public static void init(StyledDocument styledDocument) {

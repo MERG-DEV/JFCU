@@ -54,7 +54,6 @@ public class ResponseHandler implements CbusReceiveListener {
 				@Override
 				public void run() {
 					Globals.layout.getModules().add(this.m);
-					if (Globals.ui == Globals.UiChoice.SWING) uk.org.merg.jfcu.ui.swing.JFCUswing.fireModuleChanged(m);
 				}});
 			
 			
@@ -83,7 +82,6 @@ public class ResponseHandler implements CbusReceiveListener {
 					@Override
 					public void run() {
 						Globals.layout.getModules().add(this.m);
-						if (Globals.ui == Globals.UiChoice.SWING) uk.org.merg.jfcu.ui.swing.JFCUswing.fireModuleChanged(m);
 					}});
 				
 				// Send a RQNPN to get module id
@@ -114,7 +112,6 @@ public class ResponseHandler implements CbusReceiveListener {
 						m.setModuleTypeName(Globals.moduleTypeNames.find(m.getModuleTypeId()));
 						System.out.println("MODULE TYPE ID="+m.getModuleTypeId());
 						Globals.layout.getModules().add(m);
-						if (Globals.ui == Globals.UiChoice.SWING) uk.org.merg.jfcu.ui.swing.JFCUswing.fireModuleChanged(m);
 					}});
 				
 				
@@ -134,7 +131,6 @@ public class ResponseHandler implements CbusReceiveListener {
 					public void run() {
 						m.setVersion(""+paranVal);
 						System.out.println("GOT a MJ VERSION="+m.getVersion());
-						if (Globals.ui == Globals.UiChoice.SWING) uk.org.merg.jfcu.ui.swing.JFCUswing.fireModuleChanged(m);
 					}});
 				
 				// request the major version
@@ -153,7 +149,6 @@ public class ResponseHandler implements CbusReceiveListener {
 					public void run() {
 						m.setVersion(m.getVersion()+(char)paranVal);
 						System.out.println("GOT a MN VERSION="+m.getVersion());
-						if (Globals.ui == Globals.UiChoice.SWING) uk.org.merg.jfcu.ui.swing.JFCUswing.fireModuleChanged(m);
 					}});
 				
 				// request the number of NVs
@@ -171,7 +166,6 @@ public class ResponseHandler implements CbusReceiveListener {
 					@Override
 					public void run() {
 						m.setNumNV(paranVal);
-						if (Globals.ui == Globals.UiChoice.SWING) uk.org.merg.jfcu.ui.swing.JFCUswing.fireModuleChanged(m);
 					}});
 				break;
 			}
@@ -187,7 +181,6 @@ public class ResponseHandler implements CbusReceiveListener {
 					@Override
 					public void run() {
 						Globals.layout.getModules().add(m);
-						if (Globals.ui == Globals.UiChoice.SWING) uk.org.merg.jfcu.ui.swing.JFCUswing.fireModuleChanged(m);
 					}});
 				
 				// Send a RQNPN to get module id
@@ -209,7 +202,6 @@ public class ResponseHandler implements CbusReceiveListener {
 					System.out.println("Got an NV "+nvNo+"="+nvVal);
 					m.getNvs().put(nvNo, nvVal);
 					System.out.println("Saved NV "+nvNo+" as "+nvVal+" for "+m.getNodeNumber());
-					if (Globals.ui == Globals.UiChoice.SWING) uk.org.merg.jfcu.ui.swing.JFCUswing.fireModuleChanged(m);
 					System.out.println("m="+m);
 				}});
 			
@@ -240,7 +232,6 @@ public class ResponseHandler implements CbusReceiveListener {
 
 	@Override
 	public void receiveString(String input) {
-		// TODO Auto-generated method stub
 		
 	}
 	

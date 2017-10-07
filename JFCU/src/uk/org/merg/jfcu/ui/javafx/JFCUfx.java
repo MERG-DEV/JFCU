@@ -324,7 +324,6 @@ public class JFCUfx extends Application {
         
     }
     public static void main(String[] args) {
-    	Globals.ui = Globals.UiChoice.JAVAFX;
     	JTextPane textPane = new JTextPane();
     	Globals.init(textPane.getStyledDocument());
     	Globals.log.addDocumentListener(new LimitLinesDocumentListener(Globals.MAX_LINES));
