@@ -21,6 +21,7 @@ public class Module {
 	private StringProperty name;
 	private IntegerProperty moduleTypeId;
 	private IntegerProperty nodeNumber;
+	private IntegerProperty canid;
 	private StringProperty moduleTypeName;
 	private IntegerProperty numNV;
 	private StringProperty version;
@@ -32,6 +33,7 @@ public class Module {
 		name = new SimpleStringProperty();
 		moduleTypeId = new SimpleIntegerProperty();
 		nodeNumber = new SimpleIntegerProperty();
+		canid = new SimpleIntegerProperty();
 		moduleTypeName = new SimpleStringProperty();
 		numNV = new SimpleIntegerProperty();
 		version = new SimpleStringProperty();
@@ -84,6 +86,18 @@ public class Module {
 	}
 	public IntegerProperty nodeNumberProperty() {
 		return nodeNumber;
+	}
+	
+	
+	public int getCanid() {
+		return nodeNumber.get();
+	}
+	@XmlElement(name="canid")
+	public void setCanid(int canid) {
+		this.canid.set(canid);
+	}
+	public IntegerProperty canidProperty() {
+		return canid;
 	}
 	
 	

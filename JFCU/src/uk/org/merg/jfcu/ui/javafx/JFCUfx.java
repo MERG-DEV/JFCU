@@ -8,9 +8,6 @@ import javax.swing.text.BadLocationException;
 
 import co.uk.cbusio.ui.LimitLinesDocumentListener;
 import javafx.application.Application;
-import javafx.beans.property.SimpleListProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -20,12 +17,10 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioMenuItem;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -36,13 +31,13 @@ import uk.org.merg.jfcu.cbus.Dummy;
 import uk.org.merg.jfcu.cbus.Globals;
 import uk.org.merg.jfcu.layoutmodel.Event;
 import uk.org.merg.jfcu.layoutmodel.Layout;
-import uk.org.merg.jfcu.layoutmodel.Module;
 import uk.org.merg.jfcu.modulemodel.ModuleDefs;
 
 public class JFCUfx extends Application {
 	private String portText;
 	public static Stage stage;
-	@SuppressWarnings("unchecked")
+	private NodeListTable nodeList;
+	
 	@Override
     public void start(Stage stage) {
 		JFCUfx.stage = stage;
@@ -164,6 +159,8 @@ public class JFCUfx extends Application {
         
         
         Menu menuSettings = new Menu("Settings");
+
+        
         Menu menuLogging = new Menu("Logging");
         Menu menuHelp = new Menu("Help");
         menuBar.getMenus().addAll(menuFile, menuEvents, menuNodes, menuCommunications, menuSettings,
@@ -172,61 +169,11 @@ public class JFCUfx extends Application {
         HBox hbox = new HBox();
         
         // Node list
-        TableView<Module> nodeList = new TableView<Module>();
-        TableColumn<Module,String> nodeTypeCol = new TableColumn<Module,String>("Node Type");
-        nodeTypeCol.setCellValueFactory(new PropertyValueFactory<Module,String>("moduleTypeName"));
-        
-        TableColumn<Module,String> nodeNameCol = new TableColumn<Module,String>("Node Name");
-        nodeNameCol.setCellValueFactory(new PropertyValueFactory<Module, String>("name"));
-        
-        TableColumn<Module, Integer> nodeNoCol = new TableColumn<Module,Integer>("Node No");
-        nodeNoCol.setCellValueFactory(new PropertyValueFactory<Module, Integer>("nodeNumber"));
-        
-        TableColumn<Module, Integer> eventsCol = new TableColumn<Module,Integer>("Events");
-        //eventsCol.setCellValueFactory(new PropertyValueFactory<Module, String>("name"));
-        
-        TableColumn<Module, Boolean> fLiMCol = new TableColumn<Module,Boolean>("FLiM");
-        //fLiMCol.setCellValueFactory(new PropertyValueFactory<Module, String>("name"));
-        
-        TableColumn<Module, Integer> maxEventsCol = new TableColumn<Module,Integer>("Max Events");
-        //maxEventsCol.setCellValueFactory(new PropertyValueFactory<Module, Integer>("name"));
-        
-        TableColumn<Module,String> versionCol = new TableColumn<Module,String>("Version");
-        versionCol.setCellValueFactory(new PropertyValueFactory<Module, String>("version"));
-        
-        TableColumn<Module, Integer> noNvsCol = new TableColumn<Module,Integer>("No. NVs");
-        noNvsCol.setCellValueFactory(new PropertyValueFactory<Module, Integer>("numNV"));
-        
-        TableColumn<Module,String> procIdCol = new TableColumn<Module,String>("Proc Id");
-        //procIdCol.setCellValueFactory(new PropertyValueFactory<Module, String>("name"));
-        
-        TableColumn<Module,String> nodeVarsCol = new TableColumn<Module,String>("Node Vars");
-        //nodeVarsCol.setCellValueFactory(new PropertyValueFactory<Module, String>("name"));
-        
-
-        nodeList.setItems(Globals.layout.getModulesProperty());
-        
-        nodeList.getColumns().setAll(nodeTypeCol, nodeNameCol, nodeNoCol, eventsCol, fLiMCol, maxEventsCol,
-        		versionCol, noNvsCol, procIdCol, nodeVarsCol);
-        nodeList.setRowFactory(new NodeListCallback());
-        
+        nodeList = new NodeListTable();
         
         // Event list
-        TableView<Event> eventList = new TableView<Event>();
-        TableColumn<Event,String> eventRefCol = new TableColumn<Event,String>("Event Ref");
-        //firstNameCol.setCellValueFactory(new PropertyValueFactory("firstName"));
-        TableColumn<Event,String> producerNodeCol = new TableColumn<Event,String>("Producer Node");
-        //lastNameCol.setCellValueFactory(new PropertyValueFactory("lastName"));
-        TableColumn<Event, String> eventNameCol = new TableColumn<Event,String>("Event/Device Name");
-        TableColumn<Event, String> eventVarCol = new TableColumn<Event,String>("Event Variables");
-        TableColumn<Event, Integer> eventNodeCol = new TableColumn<Event,Integer>("Event Node Number");
-        TableColumn<Event, Integer> eventNumberCol = new TableColumn<Event,Integer>("Event/Device Number");
- 
-        ObservableList<Event> events = new SimpleListProperty<Event>(FXCollections.observableArrayList());
-//        modules.addAll(uk.org.merg.jfcu.ui.swing.JFCU.layout.getModules());
-        eventList.setItems(events);
-        eventList.getColumns().setAll(eventRefCol, producerNodeCol, eventNameCol, eventVarCol, 
-        		eventNodeCol, eventNumberCol);
+        TableView<Event> eventList = new EventListTable();
+
         //Log
         TextArea log = new TextArea("> QNN\n< PNN NN=1111, Manu=MERG, Module=CANMIO, Flags=FLiM&BOOT\n\n\n\n\n\n\n\n\n\n");
         Thread logUpdater = new Thread() {
