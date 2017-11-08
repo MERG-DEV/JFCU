@@ -12,7 +12,7 @@ import uk.org.merg.jfcu.modulemodel.ModuleTypeNames;
 public class ModuleDefs {
 
 	public static void loadModuleDefinitions() {
-		File file = new File("modulenames.xml");
+		File file = new File("resource/config/modulenames.xml");
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(ModuleTypeNames.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();

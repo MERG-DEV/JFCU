@@ -1,6 +1,8 @@
 package uk.org.merg.jfcu.ui.javafx;
 
 import java.io.File;
+
+import javafx.stage.WindowEvent;
 import java.util.Optional;
 
 import javax.swing.JTextPane;
@@ -8,6 +10,7 @@ import javax.swing.text.BadLocationException;
 
 import co.uk.cbusio.ui.LimitLinesDocumentListener;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -41,12 +44,20 @@ public class JFCUfx extends Application {
 	@Override
     public void start(Stage stage) {
 		JFCUfx.stage = stage;
+		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+		       @Override
+		       public void handle(WindowEvent e) {
+		          Platform.exit();
+		          System.exit(0);
+		       }
+		    });
+		
 		stage.setTitle("JavaFX FLiM Configuration Utility");
 		
 		Scene scene = new Scene(new VBox(), 800.0d, 400.0d);
         //scene.setFill(Color.web("#808080"));
         scene.getStylesheets().clear();
-        File f = new File("jfcu.css");
+        File f = new File("resource/css/jfcu.css");
         scene.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
         MenuBar menuBar = new MenuBar();
         Menu menuFile = new Menu("File");
@@ -97,7 +108,7 @@ public class JFCUfx extends Application {
         mi.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-				System.exit(0);
+				Platform.exit();
 			}});
         menuFile.getItems().add(mi);
         
@@ -270,6 +281,12 @@ public class JFCUfx extends Application {
         stage.show();
         
     }
+	
+	@Override
+	public void stop() {
+		Comms.close();
+	}
+	
     public static void main(String[] args) {
     	JTextPane textPane = new JTextPane();
     	Globals.init(textPane.getStyledDocument());

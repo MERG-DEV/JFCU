@@ -34,7 +34,7 @@ public class NodeListTable extends TableView<Module> {
         //maxEventsCol.setCellValueFactory(new PropertyValueFactory<Module, Integer>("name"));
         
         TableColumn<Module,String> versionCol = new TableColumn<Module,String>("Version");
-        versionCol.setCellValueFactory(new PropertyValueFactory<Module, String>("version"));
+        versionCol.setCellValueFactory(new PropertyValueFactory<Module, String>("fullVersion"));
         
         TableColumn<Module, Integer> noNvsCol = new TableColumn<Module,Integer>("No. NVs");
         noNvsCol.setCellValueFactory(new PropertyValueFactory<Module, Integer>("numNV"));

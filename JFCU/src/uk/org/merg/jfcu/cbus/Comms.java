@@ -100,4 +100,7 @@ public class Comms {
 			}
 		}
 	}
+	public static void close() {
+		theDriver.close();
+	}
 }

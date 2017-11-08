@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<layout>
+    <description>Level Crossing demo</description>
+    <version>1</version>
+    <modules>
+        <module>
+            <canid>1111</canid>
+            <fullVersion>1d</fullVersion>
+            <moduletypeid>32</moduletypeid>
+            <moduletypename>CANMIO</moduletypename>
+            <name>LC control</name>
+            <nodenumber>1111</nodenumber>
+            <numnv>127</numnv>
+            <nvs/>
+            <params/>
+            <subVersion>d</subVersion>
+            <version>1</version>
+        </module>
+        <module>
+            <canid>1112</canid>
+            <fullVersion>1d</fullVersion>
+            <moduletypeid>32</moduletypeid>
+            <moduletypename>CANMIO</moduletypename>
+            <name>LC panel</name>
+            <nodenumber>1112</nodenumber>
+            <numnv>127</numnv>
+            <nvs/>
+            <params/>
+            <subVersion>d</subVersion>
+            <version>1</version>
+        </module>
+    </modules>
+    <events/>
+</layout>

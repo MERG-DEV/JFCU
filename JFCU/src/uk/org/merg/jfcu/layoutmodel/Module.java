@@ -6,8 +6,11 @@ import java.util.Set;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.MapProperty;
+import javafx.beans.property.ReadOnlyStringProperty;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SetProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleMapProperty;
@@ -25,6 +28,8 @@ public class Module {
 	private StringProperty moduleTypeName;
 	private IntegerProperty numNV;
 	private StringProperty version;
+	private StringProperty subVersion;
+	private ReadOnlyStringWrapper fullVersion;
 	private SimpleMapProperty<Integer,Byte> params;
 	private SimpleMapProperty<Integer, Byte> nvs;
 	private SimpleSetProperty<Event> events;
@@ -37,6 +42,9 @@ public class Module {
 		moduleTypeName = new SimpleStringProperty();
 		numNV = new SimpleIntegerProperty();
 		version = new SimpleStringProperty();
+		subVersion = new SimpleStringProperty();
+		fullVersion = new ReadOnlyStringWrapper();
+		fullVersion.bind(Bindings.concat(version,subVersion));
 		params = new SimpleMapProperty<Integer, Byte>(FXCollections.observableHashMap());
 		nvs = new SimpleMapProperty<Integer, Byte>(FXCollections.observableHashMap());
 		events = new SimpleSetProperty<Event>(FXCollections.observableSet());
@@ -74,6 +82,28 @@ public class Module {
 	}
 	public StringProperty versionProperty() {
 		return version;
+	}
+
+	public String getSubVersion() {
+		return subVersion.get();
+	}
+	@XmlElement
+	public void setSubVersion(String subVersion) {
+		this.subVersion.set(subVersion);
+	}
+	public StringProperty subVersionProperty() {
+		return subVersion;
+	}
+	
+	public String getFullVersion() {
+		return fullVersion.get();
+	}
+	@XmlElement
+	public void setFullVersion(String fullVersion) {
+		// disallowed
+	}
+	public ReadOnlyStringProperty fullVersionProperty() {
+		return fullVersion;
 	}
 	
 	
@@ -166,7 +196,7 @@ public class Module {
 	@Override
 	public String toString() {
 		return "Module [name=" + name + ", moduleTypeId=" + moduleTypeId + ", nodeNumber=" + nodeNumber
-				+ ", moduleTypeName=" + moduleTypeName + ", numNV=" + numNV + ", version=" + version + ", params="
+				+ ", moduleTypeName=" + moduleTypeName + ", numNV=" + numNV + ", version=" + version + ", subVersion="+subVersion+", params="
 				+ params + ", nvs=" + nvs + ", events=" + events + "]";
 	}
 	

@@ -47,6 +47,7 @@ public class ResponseHandler implements CbusReceiveListener {
 				m = new Module();
 				m.setNodeNumber(nn);
 			}
+			m.setCanid(ce.getCANID());
 			m.setModuleTypeId(ce.getData(PNN_MODULE_ID));		// module ID in data 3
 			m.setModuleTypeName(Globals.moduleTypeNames.find(m.getModuleTypeId()));
 			System.out.println("MODULE TYPE ID="+m.getModuleTypeId());
@@ -78,6 +79,7 @@ public class ResponseHandler implements CbusReceiveListener {
 			if (m == null) {
 				m = new Module();		
 				m.setNodeNumber(nn);
+				m.setCanid(ce.getCANID());
 				Platform.runLater(new ModuleRunner(m){
 					@Override
 					public void run() {
@@ -147,8 +149,8 @@ public class ResponseHandler implements CbusReceiveListener {
 				Platform.runLater(new ModuleRunner(m){
 					@Override
 					public void run() {
-						m.setVersion(m.getVersion()+(char)paranVal);
-						System.out.println("GOT a MN VERSION="+m.getVersion());
+						m.setSubVersion(""+(char)paranVal);
+						System.out.println("GOT a MN VERSION="+m.getSubVersion());
 					}});
 				
 				// request the number of NVs

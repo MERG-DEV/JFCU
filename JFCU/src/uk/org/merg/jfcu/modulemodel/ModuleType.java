@@ -13,9 +13,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ModuleType {
 	private String name;
 	private int id;
-	@XmlElementWrapper(name="nvgroups")
-	@XmlElement(name="nvgroup")
-	private List<NvGroup> nvGroups;
+	@XmlElementWrapper(name="nvtabs")
+	@XmlElement(name="tab")
+	private List<NvTab> tabs;
 	private HashMap<Short, ProducedAction> defaultProducedEvents;
 	private HashMap<Short, ConsumedAction> defaultConsumedEvents;
 	private String nvEditWindowPlugin;
@@ -36,11 +36,11 @@ public class ModuleType {
 	}
 	
 	
-	public List<NvGroup> getNvGroups() {
-		return nvGroups;
+	public List<NvTab> getTabs() {
+		return tabs;
 	}
-	public void setNvGroups(List<NvGroup> nvGroups) {
-		this.nvGroups = nvGroups;
+	public void setTabs(List<NvTab> t) {
+		this.tabs = t;
 	}
 	
 	
@@ -68,7 +68,7 @@ public class ModuleType {
 	
 	@Override
 	public String toString() {
-		return "ModuleType [name=" + name + ", id=" + id + ", nvGroups=" + nvGroups + ", defaultProducedEvents="
+		return "ModuleType [name=" + name + ", id=" + id + ", tabs=" + tabs + ", defaultProducedEvents="
 				+ defaultProducedEvents + ", defaultConsumedEvents=" + defaultConsumedEvents + "]";
 	}
 }

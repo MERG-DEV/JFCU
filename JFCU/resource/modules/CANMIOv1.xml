@@ -1,7 +1,10 @@
 <moduletype>
 	<name>CANMIOv1b</name>
 	<id>32</id>
-	<nvgroups>
+	<nvtabs>
+		<tab>
+			<name>Global</name>
+			<nvgroups>
 		<nvgroup>
 			<name>Global</name>
 			<nvs>
@@ -51,9 +54,10 @@
 					</nvbits>
 				</nvbyte>
 			</nvs>
-		</nvgroup>
+		</nvgroup></nvgroups></tab>
 		
-		
+		<tab><name>IO#1</name>
+		<nvgroups>
 		<nvgroup>
 			<name>IO#1</name>\
 			<nvs>	
@@ -295,10 +299,10 @@
 					</nvbits>
 				</nvbyte>
 			</nvs>
-		</nvgroup>
+		</nvgroup></nvgroups></tab>
 		
-		
-		<nvgroup>
+		<tab><name>IO#2</name>
+		<nvgroups><nvgroup>
 			<name>IO#2</name>\
 			<nvs>	
 				<nvbyte>
@@ -539,9 +543,10 @@
 					</nvbits>
 				</nvbyte>
 			</nvs>
-		</nvgroup>
+		</nvgroup></nvgroups></tab>
 		
-		<nvgroup>
+		<tab><name>IO#3</name>
+		<nvgroups><nvgroup>
 			<name>IO#3</name>\
 			<nvs>	
 				<nvbyte>
@@ -782,9 +787,10 @@
 					</nvbits>
 				</nvbyte>
 			</nvs>
-		</nvgroup>
+		</nvgroup></nvgroups></tab>
 		
-			<nvgroup>
+		<tab><name>IO#4</name>
+		<nvgroups><nvgroup>
 			<name>IO#4</name>\
 			<nvs>	
 				<nvbyte>
@@ -1025,9 +1031,10 @@
 					</nvbits>
 				</nvbyte>
 			</nvs>
-		</nvgroup>
+		</nvgroup></nvgroups></tab>
 		
-		<nvgroup>
+		<tab><name>IO#5</name>
+		<nvgroups><nvgroup>
 			<name>IO#5</name>\
 			<nvs>	
 				<nvbyte>
@@ -1268,9 +1275,10 @@
 					</nvbits>
 				</nvbyte>
 			</nvs>
-		</nvgroup>
+		</nvgroup></nvgroups></tab>
 		
-		<nvgroup>
+		<tab><name>IO#6</name>
+		<nvgroups><nvgroup>
 			<name>IO#6</name>\
 			<nvs>	
 				<nvbyte>
@@ -1511,9 +1519,10 @@
 					</nvbits>
 				</nvbyte>
 			</nvs>
-		</nvgroup>
+		</nvgroup></nvgroups></tab>
 		
-		<nvgroup>
+		<tab><name>IO#7</name>
+		<nvgroups><nvgroup>
 			<name>IO#7</name>\
 			<nvs>	
 				<nvbyte>
@@ -1754,9 +1763,10 @@
 					</nvbits>
 				</nvbyte>
 			</nvs>
-		</nvgroup>
+		</nvgroup></nvgroups></tab>
 		
-		<nvgroup>
+		<tab><name>IO#8</name>
+		<nvgroups><nvgroup>
 			<name>IO#8</name>\
 			<nvs>	
 				<nvbyte>
@@ -1997,9 +2007,10 @@
 					</nvbits>
 				</nvbyte>
 			</nvs>
-		</nvgroup>
+		</nvgroup></nvgroups></tab>
 		
-		<nvgroup>
+		<tab><name>IO#9</name>
+		<nvgroups><nvgroup>
 			<name>IO#9</name>\
 			<nvs>	
 				<nvbyte>
@@ -2248,10 +2259,10 @@
 					</nvbits>
 				</nvbyte>
 			</nvs>
-		</nvgroup>
+		</nvgroup></nvgroups></tab>
 		
-		
-		<nvgroup>
+		<tab><name>IO#10</name>
+		<nvgroups><nvgroup>
 			<name>IO#10</name>\
 			<nvs>	
 				<nvbyte>
@@ -2500,9 +2511,10 @@
 					</nvbits>
 				</nvbyte>
 			</nvs>
-		</nvgroup>
+		</nvgroup></nvgroups></tab>
 		
-		<nvgroup>
+		<tab><name>IO#11</name>
+		<nvgroups><nvgroup>
 			<name>IO#11</name>\
 			<nvs>	
 				<nvbyte>
@@ -2751,10 +2763,11 @@
 					</nvbits>
 				</nvbyte>
 			</nvs>
-		</nvgroup>
+		</nvgroup></nvgroups></tab>
 		
-			<nvgroup>
-			<name>IO#13</name>\
+		<tab><name>IO#12</name>
+		<nvgroups><nvgroup>
+			<name>IO#12</name>\
 			<nvs>	
 				<nvbyte>
 					<id>93</id>
@@ -2994,9 +3007,10 @@
 					</nvbits>
 				</nvbyte>
 			</nvs>
-		</nvgroup>
+		</nvgroup></nvgroups></tab>
 		
-		<nvgroup>
+		<tab><name>IO#13</name>
+		<nvgroups><nvgroup>
 			<name>IO#13</name>\
 			<nvs>	
 				<nvbyte>
@@ -3245,9 +3259,10 @@
 					</nvbits>
 				</nvbyte>
 			</nvs>
-		</nvgroup>
+		</nvgroup></nvgroups></tab>
 		
-		<nvgroup>
+		<tab><name>IO#14</name>
+		<nvgroups><nvgroup>
 			<name>IO#14</name>\
 			<nvs>	
 				<nvbyte>
@@ -3496,9 +3511,10 @@
 					</nvbits>
 				</nvbyte>
 			</nvs>
-		</nvgroup>
+		</nvgroup></nvgroups></tab>
 		
-		<nvgroup>
+		<tab><name>IO#15</name>
+		<nvgroups><nvgroup>
 			<name>IO#15</name>\
 			<nvs>	
 				<nvbyte>
@@ -3747,9 +3763,10 @@
 					</nvbits>
 				</nvbyte>
 			</nvs>
-		</nvgroup>
+		</nvgroup></nvgroups></tab>
 		
-		<nvgroup>
+		<tab><name>IO#16</name>
+		<nvgroups><nvgroup>
 			<name>IO#16</name>\
 			<nvs>	
 				<nvbyte>
@@ -3998,6 +4015,6 @@
 					</nvbits>
 				</nvbyte>
 			</nvs>
-		</nvgroup>
-	</nvgroups>
+		</nvgroup></nvgroups></tab>
+	</nvtabs>
 </moduletype>
