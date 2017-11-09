@@ -49,8 +49,9 @@ public class ResponseHandler implements CbusReceiveListener {
 			}
 			m.setCanid(ce.getCANID());
 			m.setModuleTypeId(ce.getData(PNN_MODULE_ID));		// module ID in data 3
-			m.setModuleTypeName(Globals.moduleTypeNames.find(m.getModuleTypeId()));
-			System.out.println("MODULE TYPE ID="+m.getModuleTypeId());
+			String typeName = Globals.moduleTypeNames.find(m.getModuleTypeId());
+			System.out.println("MODULE TYPE ID="+m.getModuleTypeId()+" typeName="+typeName);
+			m.setModuleTypeName(typeName);
 			Platform.runLater(new ModuleRunner(m){
 				@Override
 				public void run() {

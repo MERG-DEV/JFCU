@@ -34,7 +34,12 @@ public class EditNvPanel extends VBox {
 		tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 		
 		// find the ModuleType
-		String typeName = m.getModuleTypeName()+"v"+m.getVersion();
+		String typeName = m.getModuleTypeName();
+		if (typeName == null) {
+			Alert alert = new Alert(AlertType.ERROR, "Modules of type \""+typeName+"\" are not currently supported.");
+			alert.showAndWait();
+			return;
+		}
 		ModuleType mt = ModuleTypeDataCache.get(m.getModuleTypeName(), m.getVersion(), m.getSubVersion());
 		if (mt == null) {
 			Alert alert = new Alert(AlertType.ERROR, "Modules of type \""+typeName+"\" are not currently supported.");
