@@ -1,0 +1,1217 @@
+<moduletype>
+	<!--CANSERVO8C -->
+	<nvtabs>
+		<tab>
+			<name>Servos 1-2</name>
+			<nvgroups>
+				<nvgroup>
+					<name>Servo #1</name>
+					<nvs>
+						<nvbyte>
+							<id>1</id>
+							<nvbits>
+								<bitmask>1</bitmask>
+								<name>CUTOFF</name>
+								<description>Servo pulses cut off after 1 second</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>enable</setting>
+											<value>1</value>
+										</nvitem>
+										<nvitem>
+											<setting>disable</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>2</id>
+							<nvbits>
+								<bitmask>1</bitmask>
+								<name>Power up position</name>
+								<description>OFF or ON position at power up</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>OFF</setting>
+											<value>1</value>
+										</nvitem>
+										<nvitem>
+											<setting>ON</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>3</id>
+							<nvbits>
+								<bitmask>1</bitmask>
+								<name>Move at power up</name>
+								<description>Move at power up</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>Move</setting>
+											<value>1</value>
+										</nvitem>
+										<nvitem>
+											<setting>No move</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>4</id>
+							<nvbits>
+								<bitmask>1</bitmask>
+								<name>Sequential</name>
+								<description>Move sequentially</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>Sequential</setting>
+											<value>1</value>
+										</nvitem>
+										<nvitem>
+											<setting>Simultaneous</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>5</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>ON position</name>
+								<description>Servo position of ON event</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>255</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>6</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>Off position</name>
+								<description>Servo position of OFF event</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>255</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>5</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>ON speed</name>
+								<description>OFF to ON speed</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>7</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>5</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>OFF speed</name>
+								<description>ON to OFF speed</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>7</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+					</nvs>
+				</nvgroup>
+				<nvgroup>
+					<name>Servo #2</name>
+					<nvs>
+						<nvbyte>
+							<id>1</id>
+							<nvbits>
+								<bitmask>2</bitmask>
+								<name>CUTOFF</name>
+								<description>Servo pulses cut off after 1 second</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>enable</setting>
+											<value>2</value>
+										</nvitem>
+										<nvitem>
+											<setting>disable</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>2</id>
+							<nvbits>
+								<bitmask>2</bitmask>
+								<name>Power up position</name>
+								<description>OFF or ON position at power up</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>OFF</setting>
+											<value>2</value>
+										</nvitem>
+										<nvitem>
+											<setting>ON</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>3</id>
+							<nvbits>
+								<bitmask>2</bitmask>
+								<name>Move at power up</name>
+								<description>Move at power up</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>Move</setting>
+											<value>2</value>
+										</nvitem>
+										<nvitem>
+											<setting>No move</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>4</id>
+							<nvbits>
+								<bitmask>2</bitmask>
+								<name>Sequential</name>
+								<description>Move sequentially</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>Sequential</setting>
+											<value>2</value>
+										</nvitem>
+										<nvitem>
+											<setting>Simultaneous</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>9</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>ON position</name>
+								<description>Servo position of ON event</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>255</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>10</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>Off position</name>
+								<description>Servo position of OFF event</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>255</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>11</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>ON speed</name>
+								<description>OFF to ON speed</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>7</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>12</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>OFF speed</name>
+								<description>ON to OFF speed</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>7</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+					</nvs>
+				</nvgroup>
+			</nvgroups>
+		</tab>
+		<tab>
+			<name>Servos 3-4</name>
+			<nvgroups>
+				<nvgroup>
+					<name>Servo #3</name>
+					<nvs>
+						<nvbyte>
+							<id>1</id>
+							<nvbits>
+								<bitmask>4</bitmask>
+								<name>CUTOFF</name>
+								<description>Servo pulses cut off after 1 second</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>enable</setting>
+											<value>4</value>
+										</nvitem>
+										<nvitem>
+											<setting>disable</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>2</id>
+							<nvbits>
+								<bitmask>4</bitmask>
+								<name>Power up position</name>
+								<description>OFF or ON position at power up</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>OFF</setting>
+											<value>4</value>
+										</nvitem>
+										<nvitem>
+											<setting>ON</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>3</id>
+							<nvbits>
+								<bitmask>4</bitmask>
+								<name>Move at power up</name>
+								<description>Move at power up</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>Move</setting>
+											<value>4</value>
+										</nvitem>
+										<nvitem>
+											<setting>No move</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>4</id>
+							<nvbits>
+								<bitmask>4</bitmask>
+								<name>Sequential</name>
+								<description>Move sequentially</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>Sequential</setting>
+											<value>4</value>
+										</nvitem>
+										<nvitem>
+											<setting>Simultaneous</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>13</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>ON position</name>
+								<description>Servo position of ON event</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>255</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>14</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>Off position</name>
+								<description>Servo position of OFF event</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>255</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>15</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>ON speed</name>
+								<description>OFF to ON speed</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>7</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>16</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>OFF speed</name>
+								<description>ON to OFF speed</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>7</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+					</nvs>
+				</nvgroup>
+				<nvgroup>
+					<name>Servo #4</name>
+					<nvs>
+						<nvbyte>
+							<id>1</id>
+							<nvbits>
+								<bitmask>8</bitmask>
+								<name>CUTOFF</name>
+								<description>Servo pulses cut off after 1 second</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>enable</setting>
+											<value>8</value>
+										</nvitem>
+										<nvitem>
+											<setting>disable</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>2</id>
+							<nvbits>
+								<bitmask>8</bitmask>
+								<name>Power up position</name>
+								<description>OFF or ON position at power up</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>OFF</setting>
+											<value>8</value>
+										</nvitem>
+										<nvitem>
+											<setting>ON</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>3</id>
+							<nvbits>
+								<bitmask>8</bitmask>
+								<name>Move at power up</name>
+								<description>Move at power up</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>Move</setting>
+											<value>8</value>
+										</nvitem>
+										<nvitem>
+											<setting>No move</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>4</id>
+							<nvbits>
+								<bitmask>8</bitmask>
+								<name>Sequential</name>
+								<description>Move sequentially</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>Sequential</setting>
+											<value>8</value>
+										</nvitem>
+										<nvitem>
+											<setting>Simultaneous</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>17</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>ON position</name>
+								<description>Servo position of ON event</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>255</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>18</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>Off position</name>
+								<description>Servo position of OFF event</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>255</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>19</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>ON speed</name>
+								<description>OFF to ON speed</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>7</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>20</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>OFF speed</name>
+								<description>ON to OFF speed</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>7</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+					</nvs>
+				</nvgroup>
+			</nvgroups>
+		</tab>
+		<tab>
+			<name>Servos 5-6</name>
+			<nvgroups>
+				<nvgroup>
+					<name>Servo #5</name>
+					<nvs>
+						<nvbyte>
+							<id>1</id>
+							<nvbits>
+								<bitmask>16</bitmask>
+								<name>CUTOFF</name>
+								<description>Servo pulses cut off after 1 second</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>enable</setting>
+											<value>16</value>
+										</nvitem>
+										<nvitem>
+											<setting>disable</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>2</id>
+							<nvbits>
+								<bitmask>16</bitmask>
+								<name>Power up position</name>
+								<description>OFF or ON position at power up</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>OFF</setting>
+											<value>16</value>
+										</nvitem>
+										<nvitem>
+											<setting>ON</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>3</id>
+							<nvbits>
+								<bitmask>16</bitmask>
+								<name>Move at power up</name>
+								<description>Move at power up</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>Move</setting>
+											<value>16</value>
+										</nvitem>
+										<nvitem>
+											<setting>No move</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>4</id>
+							<nvbits>
+								<bitmask>16</bitmask>
+								<name>Sequential</name>
+								<description>Move sequentially</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>Sequential</setting>
+											<value>16</value>
+										</nvitem>
+										<nvitem>
+											<setting>Simultaneous</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>21</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>ON position</name>
+								<description>Servo position of ON event</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>255</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>22</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>Off position</name>
+								<description>Servo position of OFF event</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>255</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>23</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>ON speed</name>
+								<description>OFF to ON speed</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>7</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>24</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>OFF speed</name>
+								<description>ON to OFF speed</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>7</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+					</nvs>
+				</nvgroup>
+				<nvgroup>
+					<name>Servo #6</name>
+					<nvs>
+						<nvbyte>
+							<id>1</id>
+							<nvbits>
+								<bitmask>3</bitmask>
+								<name>CUTOFF</name>
+								<description>Servo pulses cut off after 1 second</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>enable</setting>
+											<value>32</value>
+										</nvitem>
+										<nvitem>
+											<setting>disable</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>2</id>
+							<nvbits>
+								<bitmask>32</bitmask>
+								<name>Power up position</name>
+								<description>OFF or ON position at power up</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>OFF</setting>
+											<value>32</value>
+										</nvitem>
+										<nvitem>
+											<setting>ON</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>3</id>
+							<nvbits>
+								<bitmask>32</bitmask>
+								<name>Move at power up</name>
+								<description>Move at power up</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>Move</setting>
+											<value>32</value>
+										</nvitem>
+										<nvitem>
+											<setting>No move</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>4</id>
+							<nvbits>
+								<bitmask>32</bitmask>
+								<name>Sequential</name>
+								<description>Move sequentially</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>Sequential</setting>
+											<value>32</value>
+										</nvitem>
+										<nvitem>
+											<setting>Simultaneous</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>25</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>ON position</name>
+								<description>Servo position of ON event</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>255</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>26</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>Off position</name>
+								<description>Servo position of OFF event</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>255</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>27</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>ON speed</name>
+								<description>OFF to ON speed</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>7</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>28</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>OFF speed</name>
+								<description>ON to OFF speed</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>7</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+					</nvs>
+				</nvgroup>
+			</nvgroups>
+		</tab>
+		<tab>
+			<name>Servos 7-8</name>
+			<nvgroups>
+				<nvgroup>
+					<name>Servo #7</name>
+					<nvs>
+						<nvbyte>
+							<id>1</id>
+							<nvbits>
+								<bitmask>64</bitmask>
+								<name>CUTOFF</name>
+								<description>Servo pulses cut off after 1 second</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>enable</setting>
+											<value>64</value>
+										</nvitem>
+										<nvitem>
+											<setting>disable</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>2</id>
+							<nvbits>
+								<bitmask>64</bitmask>
+								<name>Power up position</name>
+								<description>OFF or ON position at power up</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>OFF</setting>
+											<value>64</value>
+										</nvitem>
+										<nvitem>
+											<setting>ON</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>3</id>
+							<nvbits>
+								<bitmask>64</bitmask>
+								<name>Move at power up</name>
+								<description>Move at power up</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>Move</setting>
+											<value>64</value>
+										</nvitem>
+										<nvitem>
+											<setting>No move</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>4</id>
+							<nvbits>
+								<bitmask>64</bitmask>
+								<name>Sequential</name>
+								<description>Move sequentially</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>Sequential</setting>
+											<value>64</value>
+										</nvitem>
+										<nvitem>
+											<setting>Simultaneous</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>29</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>ON position</name>
+								<description>Servo position of ON event</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>255</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>30</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>Off position</name>
+								<description>Servo position of OFF event</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>255</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>31</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>ON speed</name>
+								<description>OFF to ON speed</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>7</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>32</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>OFF speed</name>
+								<description>ON to OFF speed</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>7</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+					</nvs>
+				</nvgroup>
+				<nvgroup>
+					<name>Servo #8</name>
+					<nvs>
+						<nvbyte>
+							<id>1</id>
+							<nvbits>
+								<bitmask>128</bitmask>
+								<name>CUTOFF</name>
+								<description>Servo pulses cut off after 1 second</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>enable</setting>
+											<value>128</value>
+										</nvitem>
+										<nvitem>
+											<setting>disable</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>2</id>
+							<nvbits>
+								<bitmask>128</bitmask>
+								<name>Power up position</name>
+								<description>OFF or ON position at power up</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>OFF</setting>
+											<value>128</value>
+										</nvitem>
+										<nvitem>
+											<setting>ON</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>3</id>
+							<nvbits>
+								<bitmask>128</bitmask>
+								<name>Move at power up</name>
+								<description>Move at power up</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>Move</setting>
+											<value>128</value>
+										</nvitem>
+										<nvitem>
+											<setting>No move</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>4</id>
+							<nvbits>
+								<bitmask>128</bitmask>
+								<name>Sequential</name>
+								<description>Move sequentially</description>
+								<nvtype>
+									<ui>checkbox</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>Sequential</setting>
+											<value>128</value>
+										</nvitem>
+										<nvitem>
+											<setting>Simultaneous</setting>
+											<value>0</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>33</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>ON position</name>
+								<description>Servo position of ON event</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>255</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>34</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>Off position</name>
+								<description>Servo position of OFF event</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>255</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>35</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>ON speed</name>
+								<description>OFF to ON speed</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>7</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+						<nvbyte>
+							<id>36</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>OFF speed</name>
+								<description>ON to OFF speed</description>
+								<nvtype>
+									<ui>text</ui>
+									<nvinteger>
+										<nvmin>0</nvmin>
+										<nvmax>7</nvmax>
+									</nvinteger>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+					</nvs>
+				</nvgroup>
+			</nvgroups>
+		</tab>
+	</nvtabs>
+</moduletype>

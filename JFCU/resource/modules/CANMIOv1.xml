@@ -1,6 +1,4 @@
-<moduletype>
-	<name>CANMIOv1b</name>
-	<id>32</id>
+<moduletype>	<!-- CANMIO -->
 	<nvtabs>
 		<tab>
 			<name>Global</name>

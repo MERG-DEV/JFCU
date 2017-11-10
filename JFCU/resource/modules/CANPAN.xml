@@ -1,0 +1,40 @@
+<moduletype>
+	<!-- CANPAN -->
+	<nvtabs>
+		<tab>
+			<name>Global</name>
+			<nvgroups>
+				<nvgroup>
+					<name>Global</name>
+					<nvs>	
+						<nvbyte>
+							<id>1</id>
+							<nvbits>
+								<bitmask>255</bitmask>
+								<name>Power up</name>
+								<description>Power up options</description>
+								<nvtype>
+									<ui>choice</ui>
+									<nvchoice>
+										<nvitem>
+											<setting>Restore to previous</setting>
+											<value>0</value>
+										</nvitem>
+										<nvitem>
+											<setting>Do nothing</setting>
+											<value>1</value>
+										</nvitem>
+										<nvitem>
+											<setting>All on</setting>
+											<value>2</value>
+										</nvitem>
+									</nvchoice>
+								</nvtype>
+							</nvbits>
+						</nvbyte>
+					</nvs>
+				</nvgroup>
+			</nvgroups>
+		</tab>
+	</nvtabs>
+</moduletype>

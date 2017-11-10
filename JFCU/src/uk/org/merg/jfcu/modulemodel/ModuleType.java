@@ -11,30 +11,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="moduletype")
 @XmlAccessorType (XmlAccessType.FIELD)
 public class ModuleType {
-	private String name;
-	private int id;
 	@XmlElementWrapper(name="nvtabs")
 	@XmlElement(name="tab")
 	private List<NvTab> tabs;
 	private HashMap<Short, ProducedAction> defaultProducedEvents;
 	private HashMap<Short, ConsumedAction> defaultConsumedEvents;
 	private String nvEditWindowPlugin;
-	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	
 	
 	public List<NvTab> getTabs() {
 		return tabs;
@@ -68,7 +50,7 @@ public class ModuleType {
 	
 	@Override
 	public String toString() {
-		return "ModuleType [name=" + name + ", id=" + id + ", tabs=" + tabs + ", defaultProducedEvents="
+		return "ModuleType [ tabs=" + tabs + ", defaultProducedEvents="
 				+ defaultProducedEvents + ", defaultConsumedEvents=" + defaultConsumedEvents + "]";
 	}
 }

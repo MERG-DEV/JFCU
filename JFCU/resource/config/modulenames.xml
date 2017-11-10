@@ -1,8 +1,240 @@
 <moduletypes>
 	<names>
+		<name><!--- default for SLiM nodes- -->
+			<moduletype>SLIM</moduletype>
+			<moduleid>0</moduleid>
+		</name>
+		<name><!--- Solenoid point driver- -->
+			<moduletype>CANACC4</moduletype>
+			<moduleid>1</moduleid>
+		</name>
+		<name><!--- Motorised point driver- -->
+			<moduletype>CANACC5</moduletype>
+			<moduleid>2</moduleid>
+		</name>
+		<name><!--- 8 digital outputs- -->
+			<moduletype>CANACC8</moduletype>
+			<moduleid>3</moduleid>
+		</name>
+		<name><!--- Control panel switch/button encoder- -->
+			<moduletype>CANACE3</moduletype>
+			<moduleid>4</moduleid>
+		</name>
+		<name><!--- 8 digital inputs- -->
+			<moduletype>CANACE8C</moduletype>
+			<moduleid>5</moduleid>
+		</name>
+		<name><!--- 64 led driver- -->
+			<moduletype>CANLED</moduletype>
+			<moduleid>6</moduleid>
+		</name>
+		<name><!--- 64 led driver (multi leds per event)- -->
+			<moduletype>CANLED64</moduletype>
+			<moduleid>7</moduleid>
+		</name>
+		<name><!--- 12v version of CANACC4- -->
+			<moduletype>CANACC4_2</moduletype>
+			<moduleid>8</moduleid>
+		</name>
+		<name><!--- CANCAB hand throttle- -->
+			<moduletype>CANCAB</moduletype>
+			<moduleid>9</moduleid>
+		</name>
+		<name><!--- CANCMD command station- -->
+			<moduletype>CANCMD</moduletype>
+			<moduleid>10</moduleid>
+		</name>
+		<name><!--- 8 servo driver (on canacc8 or similar hardware)- -->
+			<moduletype>CANSERVO</moduletype>
+			<moduleid>11</moduleid>
+		</name>
+		<name><!--- BC1a command station- -->
+			<moduletype>CANBC</moduletype>
+			<moduleid>12</moduleid>
+		</name>
+		<name><!--- RPI and RFID interface- -->
+			<moduletype>CANRPI</moduletype>
+			<moduleid>13</moduleid>
+		</name>
+		<name><!--- Turntable controller (turntable end)- -->
+			<moduletype>CANTTCA</moduletype>
+			<moduleid>14</moduleid>
+		</name>
+		<name><!--- Turntable controller (control panel end)- -->
+			<moduletype>CANTTCB</moduletype>
+			<moduleid>15</moduleid>
+		</name>
+		<name><!--- Handset controller for old BC1a type handsets- -->
+			<moduletype>CANHS</moduletype>
+			<moduleid>16</moduleid>
+		</name>
+		<name><!--- Track occupancy detector- -->
+			<moduletype>CANTOTI</moduletype>
+			<moduleid>17</moduleid>
+		</name>
+		<name><!--- 8 inputs 8 outputs- -->
+			<moduletype>CAN8I8O</moduletype>
+			<moduleid>18</moduleid>
+		</name>
+		<name><!--- Canservo with servo position feedback- -->
+			<moduletype>CANSERVO8C</moduletype>
+			<moduleid>19</moduleid>
+		</name>
+		<name><!--- RFID input- -->
+			<moduletype>CANRFID</moduletype>
+			<moduleid>20</moduleid>
+		</name>
 		<name>
+			<moduletype>CANTC4</moduletype>
+			<moduleid>21--->
+			</moduleid>
+		</name>
+		<name><!--- 16 inputs- -->
+			<moduletype>CANACE16C</moduletype>
+			<moduleid>22</moduleid>
+		</name>
+		<name><!--- 8 way I/O- -->
+			<moduletype>CANIO8</moduletype>
+			<moduleid>23</moduleid>
+		</name>
+		<name><!--- ??- -->
+			<moduletype>CANSNDX</moduletype>
+			<moduleid>24</moduleid>
+		</name>
+		<name><!--- Ethernet interface- -->
+			<moduletype>CANEther</moduletype>
+			<moduleid>25</moduleid>
+		</name>
+		<name><!--- Multiple aspect signalling for CANLED module- -->
+			<moduletype>CANSIG64</moduletype>
+			<moduleid>26</moduleid>
+		</name>
+		<name><!--- Multiple aspect signalling for CANACC8 module- -->
+			<moduletype>CANSIG8</moduletype>
+			<moduleid>27</moduleid>
+		</name>
+		<name><!--- Conditional event generation- -->
+			<moduletype>CANCOND8C</moduletype>
+			<moduleid>28</moduleid>
+		</name>
+		<name><!--- Control panel 32/32- -->
+			<moduletype>CANPAN</moduletype>
+			<moduleid>29</moduleid>
+		</name>
+		<name><!--- Newer version of CANACE3 firmware- -->
+			<moduletype>CANACE3C</moduletype>
+			<moduleid>30</moduleid>
+		</name>
+		<name><!--- Control panel 64/64- -->
+			<moduletype>CANPanel</moduletype>
+			<moduleid>31</moduleid>
+		</name>
+		<name><!--- Multiple I/O- -->
 			<moduletype>CANMIO</moduletype>
 			<moduleid>32</moduleid>
+		</name>
+		<name><!--- Multiple IO module emulating ACE8C- -->
+			<moduletype>CANACE8MIO</moduletype>
+			<moduleid>33</moduleid>
+		</name>
+		<name><!--- Solenoid driver module- -->
+			<moduletype>CANSOL</moduletype>
+			<moduleid>34</moduleid>
+		</name>
+		<name><!--- Bipolar IO module with additional 8 I/O pins- -->
+			<moduletype>CANBIP</moduletype>
+			<moduleid>35</moduleid>
+		</name>
+		<name><!--- Solenoid driver module with additional 6 I/O pins- -->
+			<moduletype>CANCDU</moduletype>
+			<moduleid>36</moduleid>
+		</name>
+		<name><!--- CANACC4 firmware ported to CANCDU- -->
+			<moduletype>CANACC4CDU</moduletype>
+			<moduleid>37</moduleid>
+		</name>
+		<name><!--- CAN to MiWi base station- -->
+			<moduletype>CANWiBase</moduletype>
+			<moduleid>38</moduleid>
+		</name>
+		<name><!--- Wireless cab using MiWi protocol- -->
+			<moduletype>WiCAB</moduletype>
+			<moduleid>39</moduleid>
+		</name>
+		<name><!--- CAN to WiFi connection with Withrottle to CBUS protocol conversion- -->
+			<moduletype>CANWiFi</moduletype>
+			<moduleid>40</moduleid>
+		</name>
+		<name><!--- Turntable controller configured using FLiM- -->
+			<moduletype>CANFTT</moduletype>
+			<moduleid>41</moduleid>
+		</name>
+		<name><!--- Handset (alternative to CANCAB)- -->
+			<moduletype>CANHNDST</moduletype>
+			<moduleid>42</moduleid>
+		</name>
+		<name><!--- Touchscreen handset- -->
+			<moduletype>CANTCHNDST</moduletype>
+			<moduleid>43</moduleid>
+		</name>
+		<name><!--- multi-channel RFID reader- -->
+			<moduletype>CANRFID8</moduletype>
+			<moduleid>44</moduleid>
+		</name>
+		<name><!--- either a 2ch or 8ch RFID reader- -->
+			<moduletype>CANmchRFID</moduletype>
+			<moduleid>45</moduleid>
+		</name>
+		<name><!--- a Raspberry Pi based module for WiFi- -->
+			<moduletype>CANPiWi</moduletype>
+			<moduleid>46</moduleid>
+		</name>
+		<name><!--- DC train controller- -->
+			<moduletype>CAN4DC</moduletype>
+			<moduleid>47</moduleid>
+		</name>
+		<name><!--- Nelevator controller- -->
+			<moduletype>CANELEV</moduletype>
+			<moduleid>48</moduleid>
+		</name>
+		<name><!--- 128 switch inputs- -->
+			<moduletype>CANSCAN</moduletype>
+			<moduleid>49</moduleid>
+		</name>
+		<name><!--- 16MHz 25k80 version of CANSERVO8c- -->
+			<moduletype>CANMIO_SVO</moduletype>
+			<moduleid>50</moduleid>
+		</name>
+		<name><!--- 16MHz 25k80 version of CANACE8MIO- -->
+			<moduletype>CANMIO_INP</moduletype>
+			<moduleid>51</moduleid>
+		</name>
+		<name><!--- 16MHz 25k80 version of CANACC8- -->
+			<moduletype>CANMIO_OUT</moduletype>
+			<moduleid>52</moduleid>
+		</name>
+		<name><!--- 16MHz 25k80 version of CANACC5- -->
+			<moduletype>CANBIP_OUT</moduletype>
+			<moduleid>53</moduleid>
+		</name>
+		<name><!--- DCC stop generator - -->
+			<moduletype>CANASTOP</moduletype>
+			<moduleid>54</moduleid>
+		</name>
+
+
+
+		<name><!--- Software nodes- -->
+			<moduletype>CAN_SW</moduletype>
+			<moduleid>0xFF</moduleid>
+		</name>
+		<name><!--- Empty module, bootloader only- -->
+			<moduletype>EMPTY</moduletype>
+			<moduleid>0xFE</moduleid>
+		</name>
+		<name> <!--- USB interface- -->
+			<moduletype>CANUSB</moduletype>
+			<moduleid>0xFD</moduleid>
 		</name>
 	</names>
 </moduletypes>
