@@ -37,7 +37,7 @@ public class NodeListTable extends TableView<Module> {
         versionCol.setCellValueFactory(new PropertyValueFactory<Module, String>("fullVersion"));
         
         TableColumn<Module, Integer> noNvsCol = new TableColumn<Module,Integer>("No. NVs");
-        noNvsCol.setCellValueFactory(new PropertyValueFactory<Module, Integer>("numNV"));
+        noNvsCol.setCellValueFactory(new PropertyValueFactory<Module, Integer>("numNv"));
         
         TableColumn<Module,String> procIdCol = new TableColumn<Module,String>("Proc Id");
         procIdCol.setCellValueFactory(new PropertyValueFactory<Module, String>("processor"));

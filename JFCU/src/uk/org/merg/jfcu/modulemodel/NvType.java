@@ -4,7 +4,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import javafx.beans.property.IntegerProperty;
 import uk.org.merg.jfcu.layoutmodel.Module;
 
 @XmlRootElement
@@ -54,9 +53,9 @@ public class NvType {
 	
 	public String getValue(Module module, int id, int bitmask) {
 		if (module.getNvs() == null) return "NO NVs";
-		IntegerProperty ip = module.getNvs().get(id);
+		Integer ip = module.getNvs().get(id);
 		if (ip == null) return "No NV";
-		Byte nvVal = ip.getValue().byteValue();
+		Byte nvVal = ip.byteValue();
 		byte b = (byte) (nvVal & bitmask);
 		if (nvinteger != null) {
 			return ""+b;

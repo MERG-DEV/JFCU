@@ -4,15 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableNumberValue;
+import javafx.beans.value.ObservableIntegerValue;
 import javafx.beans.value.ObservableStringValue;
 import javafx.beans.value.ObservableValue;
 
-public class ProcessorObservable implements ObservableStringValue {
-	private ObservableNumberValue manu;
-	private ObservableNumberValue proc;
+public class ProcessorObservable implements ObservableStringValue, InvalidationListener {
+	private ObservableIntegerValue manu;
+	private ObservableIntegerValue proc;
 	private List<ChangeListener<? super String>> listeners;
+	private List<InvalidationListener> invlisteners;
 	
 	private final static int CPUM_MICROCHIP        =  1;
 	private final static int CPUM_ATMEL            =  2;
@@ -58,12 +60,15 @@ public class ProcessorObservable implements ObservableStringValue {
 	
 	
 	
-	public ProcessorObservable(ObservableNumberValue manu, ObservableNumberValue proc) {
+	public ProcessorObservable(ObservableIntegerValue manu, ObservableIntegerValue proc) {
 		this.manu = manu;
 		this.proc = proc;
 		listeners = new ArrayList<ChangeListener<? super String>>();
+		invlisteners = new ArrayList<InvalidationListener>();
 		manu.addListener(new ManuChangeListener(this));
+		manu.addListener(this);
 		proc.addListener(new ProcChangeListener(this));
+		proc.addListener(this);
 	}
 
 	@Override
@@ -148,11 +153,13 @@ public class ProcessorObservable implements ObservableStringValue {
 	}
 
 	@Override
-	public void addListener(InvalidationListener arg0) {
+	public void addListener(InvalidationListener l) {
+		invlisteners.add(l);
 	}
 
 	@Override
-	public void removeListener(InvalidationListener arg0) {
+	public void removeListener(InvalidationListener l) {
+		invlisteners.remove(l);
 	}
 	
 	private class ManuChangeListener implements ChangeListener<Number>{
@@ -187,6 +194,12 @@ public class ProcessorObservable implements ObservableStringValue {
 				}
 			}
 			
+		}
+	}
+	@Override
+	public void invalidated(Observable observable) {
+		for (InvalidationListener l : invlisteners) {
+			l.invalidated(this);
 		}
 	}
 

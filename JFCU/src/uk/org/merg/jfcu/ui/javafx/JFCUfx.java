@@ -181,6 +181,16 @@ public class JFCUfx extends Application {
 				System.out.println(Globals.layout);
 			}});
         menuHelp.getItems().add(mi);
+ /*       mi = new MenuItem("Update Version");
+        mi.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				Module m = Globals.layout.findModule(1114);
+				m.getParams().put(CbusProperties.MINOR_VERSION.getValue(), (int)'z');
+				m.getParams().put(CbusProperties.NUM_NV.getValue(), 5555);
+				m.setNodeNumber(666);
+			}});
+        menuHelp.getItems().add(mi); */
         menuBar.getMenus().addAll(menuFile, menuEvents, menuNodes, menuCommunications, menuSettings,
         		menuLogging, menuHelp);
  
@@ -238,7 +248,6 @@ public class JFCUfx extends Application {
 				try {
 					Globals.log.remove(0,Globals.log.getLength());
 				} catch (BadLocationException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}});

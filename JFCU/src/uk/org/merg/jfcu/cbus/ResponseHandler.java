@@ -8,7 +8,6 @@ import co.uk.ccmr.cbus.sniffer.Opc;
 import co.uk.ccmr.cbus.sniffer.CbusEvent.MinPri;
 import co.uk.ccmr.cbus.sniffer.CbusEvent.MjPri;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleIntegerProperty;
 import uk.org.merg.jfcu.cbus.cbusdefs.CbusProperties;
 import uk.org.merg.jfcu.layoutmodel.Module;
 
@@ -42,7 +41,7 @@ public class ResponseHandler implements CbusReceiveListener {
 				m.setNodeNumber(nn);
 			}
 			m.setCanid(ce.getCANID());
-			m.getParams().put(CbusProperties.MODULEID.getValue(), new SimpleIntegerProperty(ce.getData(PNN_MODULE_ID)));		// module ID in data 3
+			m.getParams().put(CbusProperties.MODULEID.getValue(), ce.getData(PNN_MODULE_ID));		// module ID in data 3
 			Platform.runLater(new ModuleRunner(m){
 				@Override
 				public void run() {
@@ -72,11 +71,7 @@ public class ResponseHandler implements CbusReceiveListener {
 			int paranNo = ce.getData(2);
 			int paranVal = ce.getData(3);
 			System.out.println("GOT No="+paranNo+" Val="+paranVal);
-			Platform.runLater(new ModuleRunner(m){
-				@Override
-				public void run() {
-					m.getParams().get(paranNo).setValue(paranVal);
-				}});
+			Platform.runLater(new ModuleParamUpdater(m, paranNo, paranVal));
 			switch (CbusProperties.find(paranNo)) {
 			case MODULEID:	//Got module id
 				// Send a RQNPN to get version
@@ -195,13 +190,13 @@ public class ResponseHandler implements CbusReceiveListener {
 				@Override
 				public void run() {
 					System.out.println("Got an NV "+nvNo+"="+nvVal);
-					m.getNvs().put(nvNo, new SimpleIntegerProperty(nvVal));
+					m.getNvs().put(nvNo, (int)nvVal);
 					System.out.println("Saved NV "+nvNo+" as "+nvVal+" for "+m.getNodeNumber());
 					System.out.println("m="+m);
 				}});
 			
 			// request next NV
-			if (nvNo < m.getParams().get(CbusProperties.NUM_NV).intValue()) {
+			if (nvNo < m.getParams().get(CbusProperties.NUM_NV.getValue()).intValue()) {
 				msg = new CbusEvent();
 				msg.setMinPri(MinPri.HIGH);
 				msg.setMjPri(MjPri.HIGH);
@@ -234,6 +229,21 @@ public class ResponseHandler implements CbusReceiveListener {
 		protected final Module m;
 		ModuleRunner(Module m) {
 			this.m = m;
+		}
+	}
+	
+	public class ModuleParamUpdater implements Runnable {
+		protected final Module m;
+		private int idx;
+		private int val;
+		ModuleParamUpdater(Module m, int idx, int val) {
+			this.m = m;
+			this.idx= idx;
+			this.val = val;
+		}
+		@Override
+		public void run() {
+			m.getParams().put(idx,val);
 		}
 	}
 

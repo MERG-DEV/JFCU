@@ -1,6 +1,5 @@
 package uk.org.merg.jfcu.ui.javafx;
 
-import javafx.beans.property.IntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -108,12 +107,10 @@ public class EditNvPanel extends VBox {
 							sp.getChildren().add(l);
 							nvGrid.add(sp, 1,  idx);
 							// the value
-							IntegerProperty ip = m.getParams().get(nvByte.getId());
-							Byte v;
-							if (ip == null) {
-								v = 0;
-							} else {
-								v = (byte) ip.intValue();
+							Integer nvVal = m.getNvs().get(nvByte.getId());
+							Byte v = 0;
+							if (nvVal != null) {
+								v = nvVal.byteValue();
 							}
 							if ((nvBits.getNvType().getUi() == null) || "text".equals(nvBits.getNvType().getUi())) {
 								TextField valueCell = new TextField(""+(v&nvBits.getBitmask()));

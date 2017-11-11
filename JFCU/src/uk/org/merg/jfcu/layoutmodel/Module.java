@@ -11,6 +11,8 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.MapProperty;
 import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.property.ReadOnlyBooleanWrapper;
+import javafx.beans.property.ReadOnlyIntegerProperty;
+import javafx.beans.property.ReadOnlyIntegerWrapper;
 import javafx.beans.property.ReadOnlyStringProperty;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SetProperty;
@@ -36,9 +38,12 @@ public class Module {
 	private ReadOnlyStringWrapper fullVersion;
 	private ReadOnlyStringWrapper processor;
 	private ReadOnlyBooleanWrapper flimFlag;
-	private SimpleMapProperty<Integer, IntegerProperty> params;
-	private SimpleMapProperty<Integer, IntegerProperty> nvs;
+	private ReadOnlyIntegerWrapper numNv;
+	private ReadOnlyIntegerWrapper numEvents;
+	private SimpleMapProperty<Integer, Integer> params;
+	private SimpleMapProperty<Integer, Integer> nvs;
 	private SimpleSetProperty<Event> events;
+	private VersionObservable vo;
 	
 	
 	public Module() {
@@ -46,26 +51,34 @@ public class Module {
 		nodeNumber = new SimpleIntegerProperty();
 		canid = new SimpleIntegerProperty();
 		
-		params = new SimpleMapProperty<Integer, IntegerProperty>(FXCollections.observableHashMap());
+		params = new SimpleMapProperty<Integer, Integer>(FXCollections.observableHashMap());
 		// create necessary dummy values
 		for (int i=0; i<CbusProperties.MAX.getValue(); i++) {
-			params.put(i, new SimpleIntegerProperty());
+			params.put(i, 0);
 		}
 		
 		// default to Microchip
-		params.get().get(CbusProperties.PROC_MANU.getValue()).setValue(1);
+		params.get().put(CbusProperties.PROC_MANU.getValue(), 1);
 		moduleTypeName = new ReadOnlyStringWrapper();
-		moduleTypeName.bind(new ModuleObservable(params.get(CbusProperties.MODULEID.getValue())));
+		moduleTypeName.bind(new ModuleObservable(Bindings.integerValueAt(params, CbusProperties.MODULEID.getValue())));
 		fullVersion = new ReadOnlyStringWrapper();
-		fullVersion.bind(new VersionObservable(params.get(CbusProperties.MAJOR_VERSION.getValue()),params.get(CbusProperties.MINOR_VERSION.getValue())));
+		vo = new VersionObservable(Bindings.integerValueAt(params, new Integer(CbusProperties.MAJOR_VERSION.getValue())),
+				Bindings.integerValueAt(params, new Integer(CbusProperties.MINOR_VERSION.getValue())));
+		fullVersion.bind(vo);
 		processor = new ReadOnlyStringWrapper();
-		processor.bind(new ProcessorObservable(params.get(CbusProperties.PROC_MANU.getValue()), params.get(CbusProperties.PROCESSOR.getValue())));
+		processor.bind(new ProcessorObservable(Bindings.integerValueAt(params, new Integer(CbusProperties.PROC_MANU.getValue())), 
+				Bindings.integerValueAt(params, new Integer(CbusProperties.PROCESSOR.getValue()))));
 		flimFlag = new ReadOnlyBooleanWrapper();
-		flimFlag.bind(new BitObservable(params.get(CbusProperties.FLAGS.getValue()), 4));
-		nvs = new SimpleMapProperty<Integer, IntegerProperty>(FXCollections.observableHashMap());
+		flimFlag.bind(new BitObservable(Bindings.integerValueAt(params, new Integer(CbusProperties.FLAGS.getValue())), 4));
+		numNv = new ReadOnlyIntegerWrapper();
+		numNv.bind(Bindings.integerValueAt(params, new Integer(CbusProperties.NUM_NV.getValue())));
+		numEvents = new ReadOnlyIntegerWrapper();
+		numEvents.bind(Bindings.integerValueAt(params, new Integer(CbusProperties.NUMEVENTS.getValue())));
+		nvs = new SimpleMapProperty<Integer, Integer>(FXCollections.observableHashMap());
 		events = new SimpleSetProperty<Event>(FXCollections.observableSet());
 	}
 
+	/* name */
 	public String getName() {
 		return name.get();
 	}
@@ -78,7 +91,7 @@ public class Module {
 	}
 	
 	
-	
+	/* fullVersion */
 	public String getFullVersion() {
 		return fullVersion.get();
 	}
@@ -90,6 +103,8 @@ public class Module {
 		return fullVersion;
 	}
 	
+	
+	/* flimFlag */
 	public Boolean getFlimFlag() {
 		return flimFlag.get();
 	}
@@ -101,7 +116,9 @@ public class Module {
 		return flimFlag;
 	}
 	
-	public String getProcessorn() {
+	
+	/* processor */
+	public String getProcessor() {
 		return processor.get();
 	}
 	@XmlElement
@@ -113,6 +130,7 @@ public class Module {
 	}
 	
 	
+	/* nodeNumber */
 	public int getNodeNumber() {
 		return nodeNumber.get();
 	}
@@ -125,6 +143,7 @@ public class Module {
 	}
 	
 	
+	/* canId */
 	public int getCanid() {
 		return nodeNumber.get();
 	}
@@ -137,6 +156,7 @@ public class Module {
 	}	
 	
 	
+	/* moduleTypeName */
 	public String getModuleTypeName() {
 		return moduleTypeName.get();
 	}
@@ -149,33 +169,61 @@ public class Module {
 	}
 		
 	
-	
-	public ObservableMap<Integer, IntegerProperty> getParams() {
+	/* params */
+	public ObservableMap<Integer, Integer> getParams() {
 		return params.get();
 	}
 	@XmlElement
-	public void setParams(Map<Integer, IntegerProperty> params) {
+	public void setParams(Map<Integer, Integer> params) {
 		this.params.clear();
 		this.params.putAll(params);
 	}
-	public MapProperty<Integer,IntegerProperty> paramsProperty() {
+	public MapProperty<Integer,Integer> paramsProperty() {
 		return params;
 	}
 	
 	
-	public Map<Integer, IntegerProperty> getNvs() {
+	/* nvs */
+	public Map<Integer, Integer> getNvs() {
 		return nvs.get();
 	}
 	@XmlElement
-	public void setNvs(Map<Integer, IntegerProperty> nvs) {
+	public void setNvs(Map<Integer, Integer> nvs) {
 		this.nvs.clear();
 		this.nvs.putAll(nvs);
 	}
-	public MapProperty<Integer,IntegerProperty> nvsProperty() {
+	public MapProperty<Integer,Integer> nvsProperty() {
 		return nvs;
 	}
 	
 	
+	/* numNv */
+	public int getNumNv() {
+		return numNv.get();
+	}
+	@XmlElement
+	public void setNumNv(Integer nnv) {
+		// not allowed
+	}
+	public ReadOnlyIntegerProperty numNvProperty() {
+		return numNv;
+	}
+	
+	
+	/* numEvents */
+	public int getNumEvents() {
+		return numEvents.get();
+	}
+	@XmlElement
+	public void setNumEvents(Integer nnv) {
+		// not allowed
+	}
+	public ReadOnlyIntegerProperty numEventsProperty() {
+		return numEvents;
+	}
+	
+	
+	/* events */
 	public Set<Event> getEvents() {
 		return events.get();
 	}
@@ -198,6 +246,7 @@ public class Module {
 				", events=" + events + 
 				", processor="+processor+
 				", Flim="+flimFlag+
+				", Version="+fullVersion+
 				"]";
 	}
 	
