@@ -19,15 +19,15 @@ public class ModuleTypeDataCache {
 	 * don't get a match then just try the name and version and then try just the name.
 	 * 
 	 * @param name
-	 * @param version
-	 * @param subVersion
+	 * @param mj
+	 * @param mn
 	 * @return
 	 */
-	public static ModuleType get(String name, String version, String subVersion) {
+	public static ModuleType get(String name, int mj, char mn) {
 		ModuleType mt;
-		mt = get(name+"v"+version+subVersion);
+		mt = get(name+"v"+mj+mn);
 		if (mt != null) return mt;
-		mt = get(name+"v"+version);
+		mt = get(name+"v"+mj);
 		if (mt != null) return mt;
 		mt = get(name);
 		return mt;

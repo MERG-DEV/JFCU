@@ -1,5 +1,6 @@
 package uk.org.merg.jfcu.cbus;
 
+import uk.org.merg.jfcu.cbus.cbusdefs.CbusProperties;
 import uk.org.merg.jfcu.layoutmodel.Layout;
 import uk.org.merg.jfcu.layoutmodel.Module;
 
@@ -13,53 +14,53 @@ public class Dummy {
 		Module m = new Module();
 		m.setName("LC control");
 		m.setNodeNumber((short) 1111);
-		m.setModuleTypeName("CANMIO");
-		m.setModuleTypeId(32);
-		m.setVersion("1");
-		m.setSubVersion("d");
-		m.setNumNV(127);
 		m.setCanid(1);
-		m.setManufacturer(1);
-		m.setProcId(15);
+		m.getParams().get(CbusProperties.MODULEID.getValue()).setValue(32);
+		m.getParams().get(CbusProperties.MAJOR_VERSION.getValue()).setValue(1);
+		m.getParams().get(CbusProperties.MINOR_VERSION.getValue()).setValue((byte)'d');
+		m.getParams().get(CbusProperties.NUM_NV.getValue()).setValue(127);	
+		m.getParams().get(CbusProperties.MANUFACTURER.getValue()).setValue(165);
+		m.getParams().get(CbusProperties.PROC_MANU.getValue()).setValue(1);
+		m.getParams().get(CbusProperties.PROCESSOR.getValue()).setValue(15);
 		Globals.layout.getModules().add(m);
 		
 		m = new Module();
 		m.setName("LC panel");
 		m.setNodeNumber((short) 1112);
-		m.setModuleTypeName("CANMIO");
-		m.setModuleTypeId(32);
-		m.setVersion("1");
-		m.setSubVersion("d");
-		m.setNumNV(127);
 		m.setCanid(2);
-		m.setManufacturer(1);
-		m.setProcId(13);
+		m.getParams().get(CbusProperties.MODULEID.getValue()).setValue(32);
+		m.getParams().get(CbusProperties.MAJOR_VERSION.getValue()).setValue(1);
+		m.getParams().get(CbusProperties.MINOR_VERSION.getValue()).setValue((byte)'d');
+		m.getParams().get(CbusProperties.NUM_NV.getValue()).setValue(127);	
+		m.getParams().get(CbusProperties.MANUFACTURER.getValue()).setValue(165);
+		m.getParams().get(CbusProperties.PROC_MANU.getValue()).setValue(1);
+		m.getParams().get(CbusProperties.PROCESSOR.getValue()).setValue(13);
 		Globals.layout.getModules().add(m);
 		
 		m = new Module();
 		m.setName("Test PAN");
 		m.setNodeNumber((short) 1113);
-		m.setModuleTypeName("CANPAN");
-		m.setModuleTypeId(29);
-		m.setVersion("4");
-		m.setSubVersion("h");
-		m.setNumNV(1);
 		m.setCanid(3);
-		m.setManufacturer(1);
-		m.setProcId(13);
+		m.getParams().get(CbusProperties.MODULEID.getValue()).setValue(29);
+		m.getParams().get(CbusProperties.MAJOR_VERSION.getValue()).setValue(4);
+		m.getParams().get(CbusProperties.MINOR_VERSION.getValue()).setValue((byte)'h');
+		m.getParams().get(CbusProperties.NUM_NV.getValue()).setValue(1);	
+		m.getParams().get(CbusProperties.MANUFACTURER.getValue()).setValue(165);
+		m.getParams().get(CbusProperties.PROC_MANU.getValue()).setValue(1);
+		m.getParams().get(CbusProperties.PROCESSOR.getValue()).setValue(13);
 		Globals.layout.getModules().add(m);
 		
 		m = new Module();
 		m.setName("Test SERVO8C");
 		m.setNodeNumber((short) 1114);
-		m.setModuleTypeName("CANSERVO8C");
-		m.setModuleTypeId(19);
-		m.setVersion("1");
-		m.setSubVersion("y");
-		m.setNumNV(36);
 		m.setCanid(4);
-		m.setManufacturer(1);
-		m.setProcId(13);
+		m.getParams().get(CbusProperties.MODULEID.getValue()).setValue(19);
+		m.getParams().get(CbusProperties.MAJOR_VERSION.getValue()).setValue(1);
+		m.getParams().get(CbusProperties.MINOR_VERSION.getValue()).setValue((byte)'y');
+		m.getParams().get(CbusProperties.NUM_NV.getValue()).setValue(36);	
+		m.getParams().get(CbusProperties.MANUFACTURER.getValue()).setValue(165);
+		m.getParams().get(CbusProperties.PROC_MANU.getValue()).setValue(1);
+		m.getParams().get(CbusProperties.PROCESSOR.getValue()).setValue(13);
 		Globals.layout.getModules().add(m);
 		
 		System.out.println("constructed layout="+Globals.layout);

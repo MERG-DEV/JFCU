@@ -6,15 +6,15 @@ import java.util.List;
 import javafx.beans.InvalidationListener;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableBooleanValue;
-import javafx.beans.value.ObservableNumberValue;
+import javafx.beans.value.ObservableIntegerValue;
 import javafx.beans.value.ObservableValue;
 
 public class BitObservable implements ObservableBooleanValue, ChangeListener<Number> {
-	private ObservableNumberValue oi;
+	private ObservableIntegerValue oi;
 	private int mask;
 	private List<ChangeListener<? super Boolean>> listeners;
 	
-	public BitObservable(ObservableNumberValue oi, int mask) {
+	public BitObservable(ObservableIntegerValue oi, int mask) {
 		this.oi = oi;
 		oi.addListener(this);
 		this.mask = mask;

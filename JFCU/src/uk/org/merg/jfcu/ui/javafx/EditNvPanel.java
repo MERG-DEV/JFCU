@@ -1,5 +1,6 @@
 package uk.org.merg.jfcu.ui.javafx;
 
+import javafx.beans.property.IntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -18,6 +19,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
+import uk.org.merg.jfcu.cbus.cbusdefs.CbusProperties;
 import uk.org.merg.jfcu.controller.ModuleTypeDataCache;
 import uk.org.merg.jfcu.layoutmodel.Module;
 import uk.org.merg.jfcu.modulemodel.ModuleType;
@@ -40,7 +42,10 @@ public class EditNvPanel extends VBox {
 			alert.showAndWait();
 			return;
 		}
-		ModuleType mt = ModuleTypeDataCache.get(m.getModuleTypeName(), m.getVersion(), m.getSubVersion());
+		System.out.println("m="+m);
+		ModuleType mt = ModuleTypeDataCache.get(m.getModuleTypeName(), 
+				m.getParams().get(CbusProperties.MAJOR_VERSION.getValue()).intValue(), 
+				(char) m.getParams().get(CbusProperties.MINOR_VERSION.getValue()).intValue());
 		if (mt == null) {
 			Alert alert = new Alert(AlertType.ERROR, "Modules of type \""+typeName+"\" are not currently supported.");
 			alert.showAndWait();
@@ -103,8 +108,13 @@ public class EditNvPanel extends VBox {
 							sp.getChildren().add(l);
 							nvGrid.add(sp, 1,  idx);
 							// the value
-							Byte v = m.getNvs().get(nvByte.getId());
-							if (v == null) v = 0;
+							IntegerProperty ip = m.getParams().get(nvByte.getId());
+							Byte v;
+							if (ip == null) {
+								v = 0;
+							} else {
+								v = (byte) ip.intValue();
+							}
 							if ((nvBits.getNvType().getUi() == null) || "text".equals(nvBits.getNvType().getUi())) {
 								TextField valueCell = new TextField(""+(v&nvBits.getBitmask()));
 								sp = new StackPane();

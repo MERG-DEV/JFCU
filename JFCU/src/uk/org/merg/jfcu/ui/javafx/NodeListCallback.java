@@ -16,7 +16,7 @@ import javafx.stage.Popup;
 import javafx.util.Callback;
 import uk.org.merg.jfcu.cbus.Comms;
 import uk.org.merg.jfcu.cbus.Globals;
-import uk.org.merg.jfcu.cbus.ResponseHandler;
+import uk.org.merg.jfcu.cbus.cbusdefs.CbusProperties;
 import uk.org.merg.jfcu.layoutmodel.Module;
 
 public class NodeListCallback implements Callback<TableView<Module>, TableRow<Module>> {
@@ -41,7 +41,7 @@ public class NodeListCallback implements Callback<TableView<Module>, TableRow<Mo
 				msg.setCANID(Globals.CANID);
 				msg.setOpc(Opc.RQNPN);
 				msg.setNN(m.getNodeNumber());
-				msg.setData(2, ResponseHandler.PARAN_MODULE_ID);		// param 3 is module id
+				msg.setData(2, CbusProperties.MODULEID.getValue());		// param 3 is module id
 				Comms.theDriver.queueForTransmit(msg);
 				
 			}});
