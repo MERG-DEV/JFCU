@@ -174,6 +174,13 @@ public class JFCUfx extends Application {
         
         Menu menuLogging = new Menu("Logging");
         Menu menuHelp = new Menu("Help");
+        mi = new MenuItem("Dump Layout");
+        mi.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				System.out.println(Globals.layout);
+			}});
+        menuHelp.getItems().add(mi);
         menuBar.getMenus().addAll(menuFile, menuEvents, menuNodes, menuCommunications, menuSettings,
         		menuLogging, menuHelp);
  

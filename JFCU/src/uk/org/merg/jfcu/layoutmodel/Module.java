@@ -9,6 +9,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.MapProperty;
+import javafx.beans.property.ReadOnlyBooleanProperty;
+import javafx.beans.property.ReadOnlyBooleanWrapper;
 import javafx.beans.property.ReadOnlyStringProperty;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SetProperty;
@@ -18,6 +20,8 @@ import javafx.beans.property.SimpleSetProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
+import uk.org.merg.jfcu.ui.javafx.BitObservable;
+import uk.org.merg.jfcu.ui.javafx.ProcessorObservable;
 
 @XmlRootElement
 public class Module {
@@ -29,7 +33,14 @@ public class Module {
 	private IntegerProperty numNV;
 	private StringProperty version;
 	private StringProperty subVersion;
+	private IntegerProperty procId;
+	private IntegerProperty numEvents;
+	private IntegerProperty numEvs;
+	private IntegerProperty manufacturer;
+	private IntegerProperty flags;
 	private ReadOnlyStringWrapper fullVersion;
+	private ReadOnlyStringWrapper processor;
+	private ReadOnlyBooleanWrapper flimFlag;
 	private SimpleMapProperty<Integer,Byte> params;
 	private SimpleMapProperty<Integer, Byte> nvs;
 	private SimpleSetProperty<Event> events;
@@ -41,10 +52,19 @@ public class Module {
 		canid = new SimpleIntegerProperty();
 		moduleTypeName = new SimpleStringProperty();
 		numNV = new SimpleIntegerProperty();
+		procId = new SimpleIntegerProperty();
+		numEvents = new SimpleIntegerProperty();
+		numEvs = new SimpleIntegerProperty();
+		manufacturer = new SimpleIntegerProperty();
+		flags = new SimpleIntegerProperty();
 		version = new SimpleStringProperty();
 		subVersion = new SimpleStringProperty();
 		fullVersion = new ReadOnlyStringWrapper();
 		fullVersion.bind(Bindings.concat(version,subVersion));
+		processor = new ReadOnlyStringWrapper();
+		processor.bind(new ProcessorObservable(manufacturer, procId));
+		flimFlag = new ReadOnlyBooleanWrapper();
+		flimFlag.bind(new BitObservable(flags, 4));
 		params = new SimpleMapProperty<Integer, Byte>(FXCollections.observableHashMap());
 		nvs = new SimpleMapProperty<Integer, Byte>(FXCollections.observableHashMap());
 		events = new SimpleSetProperty<Event>(FXCollections.observableSet());
@@ -106,6 +126,28 @@ public class Module {
 		return fullVersion;
 	}
 	
+	public Boolean getFlimFlag() {
+		return flimFlag.get();
+	}
+	@XmlElement
+	public void setFlimFlag(Boolean ff) {
+		// disallowed
+	}
+	public ReadOnlyBooleanProperty flimFlagProperty() {
+		return flimFlag;
+	}
+	
+	public String getProcessorn() {
+		return processor.get();
+	}
+	@XmlElement
+	public void setProcessor(String processor) {
+		// disallowed
+	}
+	public ReadOnlyStringProperty processorProperty() {
+		return processor;
+	}
+	
 	
 	public int getNodeNumber() {
 		return nodeNumber.get();
@@ -129,6 +171,63 @@ public class Module {
 	public IntegerProperty canidProperty() {
 		return canid;
 	}
+	
+	public int getFlags() {
+		return flags.get();
+	}
+	@XmlElement(name="flags")
+	public void setFlags(int id) {
+		this.flags.set(id);
+	}
+	public IntegerProperty flagsProperty() {
+		return flags;
+	}
+	
+	public int getManufacturer() {
+		return procId.get();
+	}
+	@XmlElement(name="manufacturer")
+	public void setManufacturer(int id) {
+		this.manufacturer.set(id);
+	}
+	public IntegerProperty manufacturerProperty() {
+		return manufacturer;
+	}
+	
+	public int getProcId() {
+		return procId.get();
+	}
+	@XmlElement(name="procid")
+	public void setProcId(int id) {
+		this.procId.set(id);
+	}
+	public IntegerProperty procIdProperty() {
+		return procId;
+	}
+	
+	public int getNumEvents() {
+		return numEvents.get();
+	}
+	@XmlElement(name="numevents")
+	public void setNumEvents(int id) {
+		this.numEvents.set(id);
+	}
+	public IntegerProperty numEventsProperty() {
+		return numEvents;
+	}
+	
+	public int getNumEvs() {
+		return moduleTypeId.get();
+	}
+	@XmlElement(name="numEvs")
+	public void setNumEvs(int id) {
+		this.numEvs.set(id);
+	}
+	public IntegerProperty numEvsProperty() {
+		return numEvs;
+	}
+	
+	
 	
 	
 	public String getModuleTypeName() {
@@ -195,9 +294,22 @@ public class Module {
 
 	@Override
 	public String toString() {
-		return "Module [name=" + name + ", moduleTypeId=" + moduleTypeId + ", nodeNumber=" + nodeNumber
-				+ ", moduleTypeName=" + moduleTypeName + ", numNV=" + numNV + ", version=" + version + ", subVersion="+subVersion+", params="
-				+ params + ", nvs=" + nvs + ", events=" + events + "]";
+		return "Module [name=" + name + 
+				", moduleTypeId=" + moduleTypeId + 
+				", nodeNumber=" + nodeNumber + 
+				", moduleTypeName=" + moduleTypeName + 
+				", numNV=" + numNV + 
+				", version=" + version + 
+				", subVersion="+subVersion+
+				", params=" + params + 
+				", nvs=" + nvs + 
+				", events=" + events + 
+				", manu="+manufacturer+
+				", proc="+procId+
+				", processor="+processor+
+				", flags="+flags+
+				", Flim="+flimFlag+
+				"]";
 	}
 	
 }

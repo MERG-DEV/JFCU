@@ -16,6 +16,7 @@ import javafx.stage.Popup;
 import javafx.util.Callback;
 import uk.org.merg.jfcu.cbus.Comms;
 import uk.org.merg.jfcu.cbus.Globals;
+import uk.org.merg.jfcu.cbus.ResponseHandler;
 import uk.org.merg.jfcu.layoutmodel.Module;
 
 public class NodeListCallback implements Callback<TableView<Module>, TableRow<Module>> {
@@ -29,7 +30,19 @@ public class NodeListCallback implements Callback<TableView<Module>, TableRow<Mo
 	    readProps.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-				// TODO Auto-generated method stub
+				// Start to read parameters
+				final Module m = row.itemProperty().getValue();
+			    System.out.println("Popup on Module "+m);
+			    if (m == null) return;
+				
+			    CbusEvent msg = new CbusEvent();
+				msg.setMinPri(MinPri.HIGH);
+				msg.setMjPri(MjPri.HIGH);
+				msg.setCANID(Globals.CANID);
+				msg.setOpc(Opc.RQNPN);
+				msg.setNN(m.getNodeNumber());
+				msg.setData(2, ResponseHandler.PARAN_MODULE_ID);		// param 3 is module id
+				Comms.theDriver.queueForTransmit(msg);
 				
 			}});
 	    MenuItem readNvs = new MenuItem("Read NVs");

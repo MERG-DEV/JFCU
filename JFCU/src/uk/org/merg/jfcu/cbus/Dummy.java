@@ -19,6 +19,8 @@ public class Dummy {
 		m.setSubVersion("d");
 		m.setNumNV(127);
 		m.setCanid(1);
+		m.setManufacturer(1);
+		m.setProcId(15);
 		Globals.layout.getModules().add(m);
 		
 		m = new Module();
@@ -30,6 +32,8 @@ public class Dummy {
 		m.setSubVersion("d");
 		m.setNumNV(127);
 		m.setCanid(2);
+		m.setManufacturer(1);
+		m.setProcId(13);
 		Globals.layout.getModules().add(m);
 		
 		m = new Module();
@@ -41,6 +45,8 @@ public class Dummy {
 		m.setSubVersion("h");
 		m.setNumNV(1);
 		m.setCanid(3);
+		m.setManufacturer(1);
+		m.setProcId(13);
 		Globals.layout.getModules().add(m);
 		
 		m = new Module();
@@ -52,6 +58,8 @@ public class Dummy {
 		m.setSubVersion("y");
 		m.setNumNV(36);
 		m.setCanid(4);
+		m.setManufacturer(1);
+		m.setProcId(13);
 		Globals.layout.getModules().add(m);
 		
 		System.out.println("constructed layout="+Globals.layout);

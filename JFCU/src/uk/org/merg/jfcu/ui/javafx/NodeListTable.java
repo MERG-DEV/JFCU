@@ -28,10 +28,10 @@ public class NodeListTable extends TableView<Module> {
         //eventsCol.setCellValueFactory(new PropertyValueFactory<Module, String>("name"));
         
         TableColumn<Module, Boolean> fLiMCol = new TableColumn<Module,Boolean>("FLiM");
-        //fLiMCol.setCellValueFactory(new PropertyValueFactory<Module, String>("name"));
+        fLiMCol.setCellValueFactory(new PropertyValueFactory<Module, Boolean>("flimFlag"));
         
         TableColumn<Module, Integer> maxEventsCol = new TableColumn<Module,Integer>("Max Events");
-        //maxEventsCol.setCellValueFactory(new PropertyValueFactory<Module, Integer>("name"));
+        maxEventsCol.setCellValueFactory(new PropertyValueFactory<Module, Integer>("numEvents"));
         
         TableColumn<Module,String> versionCol = new TableColumn<Module,String>("Version");
         versionCol.setCellValueFactory(new PropertyValueFactory<Module, String>("fullVersion"));
@@ -40,7 +40,7 @@ public class NodeListTable extends TableView<Module> {
         noNvsCol.setCellValueFactory(new PropertyValueFactory<Module, Integer>("numNV"));
         
         TableColumn<Module,String> procIdCol = new TableColumn<Module,String>("Proc Id");
-        //procIdCol.setCellValueFactory(new PropertyValueFactory<Module, String>("name"));
+        procIdCol.setCellValueFactory(new PropertyValueFactory<Module, String>("processor"));
         
         TableColumn<Module,String> nodeVarsCol = new TableColumn<Module,String>("Node Vars");
         //nodeVarsCol.setCellValueFactory(new PropertyValueFactory<Module, String>("name"));

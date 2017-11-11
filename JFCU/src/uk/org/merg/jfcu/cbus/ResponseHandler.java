@@ -13,15 +13,17 @@ import uk.org.merg.jfcu.layoutmodel.Module;
 public class ResponseHandler implements CbusReceiveListener {
 	private final static int PARAN_MANUFACTURER = 1;
 	private final static int PARAN_MINOR_VERSION = 2;
-	private final static int PARAN_MODULE_ID = 3;
+	public final static int PARAN_MODULE_ID = 3;
 	private final static int PARAN_NUM_EVENTS = 4;
 	private final static int PARAN_NUM_EVS = 5;
 	private final static int PARAN_NUM_NVS = 6;
 	private final static int PARAN_MAJOR_VERSION = 7;
+	private final static int PARAN_FLAGS = 8;
+	private final static int PARAN_PROCESSOR = 9;
 	
-	private final static int PNN_MANUFACTURER = 2;
+//	private final static int PNN_MANUFACTURER = 2;
 	private final static int PNN_MODULE_ID = 3;
-	private final static int PNN_FLAGS = 4;
+//	private final static int PNN_FLAGS = 4;
 
 	@Override
 	public void receiveMessage(CbusEvent ce) {
@@ -107,7 +109,7 @@ public class ResponseHandler implements CbusReceiveListener {
 					m.getParams().put(paranNo,  (byte)paranVal);
 				}});
 			switch (paranNo) {
-			case PARAN_MODULE_ID:	//module id
+			case PARAN_MODULE_ID:	//Got module id
 				Platform.runLater(new ModuleRunner(m){
 					@Override
 					public void run() {
@@ -125,10 +127,10 @@ public class ResponseHandler implements CbusReceiveListener {
 				msg.setCANID(Globals.CANID);
 				msg.setOpc(Opc.RQNPN);
 				msg.setNN(m.getNodeNumber());
-				msg.setData(2, PARAN_MAJOR_VERSION);		// param 7 is the major version
+				msg.setData(2, PARAN_MAJOR_VERSION);		// Request param 7 is the major version
 				Comms.theDriver.queueForTransmit(msg);
 				break;
-			case PARAN_MAJOR_VERSION: // major version
+			case PARAN_MAJOR_VERSION: // Got major version
 				Platform.runLater(new ModuleRunner(m){
 					@Override
 					public void run() {
@@ -143,10 +145,10 @@ public class ResponseHandler implements CbusReceiveListener {
 				msg.setCANID(Globals.CANID);
 				msg.setOpc(Opc.RQNPN);
 				msg.setNN(m.getNodeNumber());
-				msg.setData(2, PARAN_MINOR_VERSION);		// param 2 is the minor version
+				msg.setData(2, PARAN_MINOR_VERSION);		// Request param 2 is the minor version
 				Comms.theDriver.queueForTransmit(msg);
 				break;
-			case PARAN_MINOR_VERSION:	// minor version
+			case PARAN_MINOR_VERSION:	// Got minor version
 				Platform.runLater(new ModuleRunner(m){
 					@Override
 					public void run() {
@@ -161,14 +163,94 @@ public class ResponseHandler implements CbusReceiveListener {
 				msg.setCANID(Globals.CANID);
 				msg.setOpc(Opc.RQNPN);
 				msg.setNN(m.getNodeNumber());
-				msg.setData(2, PARAN_NUM_NVS);		// param 6 is the number of NVs
+				msg.setData(2, PARAN_NUM_NVS);		// Request param 6 is the number of NVs
 				Comms.theDriver.queueForTransmit(msg);
 				break;
-			case PARAN_NUM_NVS:	// number of NVs
+			case PARAN_NUM_NVS:	// Got number of NVs
 				Platform.runLater(new ModuleRunner(m){
 					@Override
 					public void run() {
 						m.setNumNV(paranVal);
+					}});
+				// request the Manufacturer
+				msg = new CbusEvent();
+				msg.setMinPri(MinPri.HIGH);
+				msg.setMjPri(MjPri.HIGH);
+				msg.setCANID(Globals.CANID);
+				msg.setOpc(Opc.RQNPN);
+				msg.setNN(m.getNodeNumber());
+				msg.setData(2, PARAN_MANUFACTURER);		// Request param 1 is the Manufacturer
+				Comms.theDriver.queueForTransmit(msg);
+				break;
+			case PARAN_MANUFACTURER:	// Got Manufacturer
+				Platform.runLater(new ModuleRunner(m){
+					@Override
+					public void run() {
+						m.setManufacturer(paranVal);
+					}});
+				// request the number of Events
+				msg = new CbusEvent();
+				msg.setMinPri(MinPri.HIGH);
+				msg.setMjPri(MjPri.HIGH);
+				msg.setCANID(Globals.CANID);
+				msg.setOpc(Opc.RQNPN);
+				msg.setNN(m.getNodeNumber());
+				msg.setData(2, PARAN_FLAGS);		// Request flags
+				Comms.theDriver.queueForTransmit(msg);
+				break;
+			case PARAN_FLAGS:	// Got flags
+				Platform.runLater(new ModuleRunner(m){
+					@Override
+					public void run() {
+						m.setFlags(paranVal);
+					}});
+				// request the number of Events
+				msg = new CbusEvent();
+				msg.setMinPri(MinPri.HIGH);
+				msg.setMjPri(MjPri.HIGH);
+				msg.setCANID(Globals.CANID);
+				msg.setOpc(Opc.RQNPN);
+				msg.setNN(m.getNodeNumber());
+				msg.setData(2, PARAN_NUM_EVENTS);		// Request number of Events
+				Comms.theDriver.queueForTransmit(msg);
+				break;
+			case PARAN_NUM_EVENTS:	// Got Events
+				Platform.runLater(new ModuleRunner(m){
+					@Override
+					public void run() {
+						m.setNumEvents(paranVal);
+					}});
+				// request the processor
+				msg = new CbusEvent();
+				msg.setMinPri(MinPri.HIGH);
+				msg.setMjPri(MjPri.HIGH);
+				msg.setCANID(Globals.CANID);
+				msg.setOpc(Opc.RQNPN);
+				msg.setNN(m.getNodeNumber());
+				msg.setData(2, PARAN_NUM_EVS);		// Request Num EVs
+				Comms.theDriver.queueForTransmit(msg);
+				break;
+			case PARAN_NUM_EVS:	// Got EVs
+				Platform.runLater(new ModuleRunner(m){
+					@Override
+					public void run() {
+						m.setNumEvs(paranVal);
+					}});
+				// request the processor
+				msg = new CbusEvent();
+				msg.setMinPri(MinPri.HIGH);
+				msg.setMjPri(MjPri.HIGH);
+				msg.setCANID(Globals.CANID);
+				msg.setOpc(Opc.RQNPN);
+				msg.setNN(m.getNodeNumber());
+				msg.setData(2, PARAN_PROCESSOR);		// Request processor
+				Comms.theDriver.queueForTransmit(msg);
+				break;
+			case PARAN_PROCESSOR:	// Got Evnts
+				Platform.runLater(new ModuleRunner(m){
+					@Override
+					public void run() {
+						m.setProcId(paranVal);
 					}});
 				break;
 			}
