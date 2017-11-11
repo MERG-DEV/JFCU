@@ -2,13 +2,14 @@ package uk.org.merg.jfcu.ui.javafx;
 
 
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import uk.org.merg.jfcu.cbus.Globals;
 import uk.org.merg.jfcu.layoutmodel.Module;
 
 public class NodeListTable extends TableView<Module> {
-	private TableColumn<Module, Integer> canidCol;
 	
 	@SuppressWarnings("unchecked")
 	public NodeListTable() {
@@ -17,11 +18,20 @@ public class NodeListTable extends TableView<Module> {
         
         TableColumn<Module,String> nodeNameCol = new TableColumn<Module,String>("Node Name");
         nodeNameCol.setCellValueFactory(new PropertyValueFactory<Module, String>("name"));
+        nodeNameCol.setEditable(true);
+        nodeNameCol.setCellFactory(TextFieldTableCell.<Module>forTableColumn());
+        nodeNameCol.setOnEditCommit(
+            (CellEditEvent<Module, String> t) -> {
+                ((Module) t.getTableView().getItems().get(
+                    t.getTablePosition().getRow())
+                    ).setName(t.getNewValue());
+        });
+        setEditable(true);
         
         TableColumn<Module, Integer> nodeNoCol = new TableColumn<Module,Integer>("Node No");
         nodeNoCol.setCellValueFactory(new PropertyValueFactory<Module, Integer>("nodeNumber"));
         
-        canidCol = new TableColumn<Module,Integer>("CAN ID");
+        TableColumn<Module,Integer> canidCol = new TableColumn<Module,Integer>("CAN ID");
         canidCol.setCellValueFactory(new PropertyValueFactory<Module, Integer>("canid"));
         
         TableColumn<Module, Integer> eventsCol = new TableColumn<Module,Integer>("Events");
