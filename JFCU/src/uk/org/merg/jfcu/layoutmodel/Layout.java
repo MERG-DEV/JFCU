@@ -1,10 +1,7 @@
 package uk.org.merg.jfcu.layoutmodel;
 
 import java.io.File;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -34,11 +31,11 @@ public class Layout {
 	
 	@XmlElementWrapper(name="events")
 	@XmlElement(name="event")
-	private Set<Event> events;
+	private ListProperty<Event> events;
 	
 	public Layout() {
 		modules = new SimpleListProperty<Module>(FXCollections.observableArrayList());
-		events = new HashSet<Event>();
+		events = new SimpleListProperty<Event>(FXCollections.observableArrayList());
 		description = "";
 		version = 0;
 	}
@@ -78,11 +75,14 @@ public class Layout {
 	}
 	
 	
-	public Set<Event> getEvents() {
-		return events;
+	public List<Event> getEvents() {
+		return events.get();
 	}
-	public void setEvents(Set<Event> events) {
-		this.events = events;
+	public void setEvents(List<Event> events) {
+		this.events.setAll(events);
+	}
+	public ListProperty<Event> eventsProperty() {
+		return events;
 	}
 
 	public void loadFromCBUS() {

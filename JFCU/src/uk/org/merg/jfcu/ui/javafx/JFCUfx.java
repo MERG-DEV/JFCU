@@ -20,7 +20,6 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioMenuItem;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ToggleGroup;
@@ -32,14 +31,12 @@ import javafx.stage.Stage;
 import uk.org.merg.jfcu.cbus.Comms;
 import uk.org.merg.jfcu.cbus.Dummy;
 import uk.org.merg.jfcu.cbus.Globals;
-import uk.org.merg.jfcu.layoutmodel.Event;
 import uk.org.merg.jfcu.layoutmodel.Layout;
 import uk.org.merg.jfcu.modulemodel.ModuleDefs;
 
 public class JFCUfx extends Application {
 	private String portText;
 	public static Stage stage;
-	private NodeListTable nodeList;
 	
 	@Override
     public void start(Stage stage) {
@@ -197,10 +194,10 @@ public class JFCUfx extends Application {
         HBox hbox = new HBox();
         
         // Node list
-        nodeList = new NodeListTable();
+    	NodeListTable nodeList = new NodeListTable();
         
         // Event list
-        TableView<Event> eventList = new EventListTable();
+        EventListTable eventList = new EventListTable();
 
         //Log
         TextArea log = new TextArea("> QNN\n< PNN NN=1111, Manu=MERG, Module=CANMIO, Flags=FLiM&BOOT\n\n\n\n\n\n\n\n\n\n");

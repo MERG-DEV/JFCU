@@ -1,6 +1,7 @@
 package uk.org.merg.jfcu.cbus;
 
 import uk.org.merg.jfcu.cbus.cbusdefs.CbusProperties;
+import uk.org.merg.jfcu.layoutmodel.Event;
 import uk.org.merg.jfcu.layoutmodel.Layout;
 import uk.org.merg.jfcu.layoutmodel.Module;
 
@@ -62,6 +63,12 @@ public class Dummy {
 		m.getParams().put(CbusProperties.PROC_MANU.getValue(),1);
 		m.getParams().put(CbusProperties.PROCESSOR.getValue(),13);
 		Globals.layout.getModules().add(m);
+		
+		Event e = new Event();
+		e.setLength(Event.Etype.SHORT);
+		e.setNn(0);
+		e.setEn(5001);
+		Globals.layout.getEvents().add(e);
 		
 		System.out.println("constructed layout="+Globals.layout);
 	}
