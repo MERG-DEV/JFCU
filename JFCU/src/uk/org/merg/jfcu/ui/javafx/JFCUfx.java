@@ -1,6 +1,7 @@
 package uk.org.merg.jfcu.ui.javafx;
 
 import java.io.File;
+import java.net.URL;
 
 import javafx.stage.WindowEvent;
 import java.util.Optional;
@@ -54,8 +55,9 @@ public class JFCUfx extends Application {
 		Scene scene = new Scene(new VBox(), 800.0d, 400.0d);
         //scene.setFill(Color.web("#808080"));
         scene.getStylesheets().clear();
-        File f = new File("resource/css/jfcu.css");
-        scene.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
+        URL url = JFCUfx.class.getResource(
+                "/css/jfcu.css");
+        scene.getStylesheets().add(url.toString());
         MenuBar menuBar = new MenuBar();
         Menu menuFile = new Menu("File");
         
@@ -97,6 +99,8 @@ public class JFCUfx extends Application {
 			public void handle(ActionEvent arg0) {
 				Globals.layout.getModules().clear();
 				Globals.layout.getModulesProperty().clear();
+				Globals.layout.getEvents().clear();
+				Globals.layout.eventsProperty().clear();
 				Globals.layout.loadFromCBUS();
 			}});
         menuFile.getItems().add(mi);

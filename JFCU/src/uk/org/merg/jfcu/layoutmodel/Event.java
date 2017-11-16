@@ -107,15 +107,19 @@ public class Event {
 	public boolean equals(Object o) {
 		if (o instanceof Event) {
 			Event e = (Event)o;
-			if ((nn.get() == e.getNn()) && (en.get() == e.getEn())) {
-				return true;
+			if (en.get() != e.getEn()) return false;
+			if (length.get() != e.getLength()) {
+				System.out.println("WARNING mix of LONG and SHORT event with same EN");
+				return false;
 			}
-			
+			if (length.get() == Etype.SHORT) return true;
+			if (nn.get() != e.getNn()) 	return false;
+			return true;
 		}
 		return false;
 	}
 	@Override
 	public int hashCode() {
-		return nn.get()*en.get();
+		return nn.get()*en.get()+(length.get()==Etype.LONG?1:0);
 	}
 }

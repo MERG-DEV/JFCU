@@ -1,7 +1,7 @@
 package uk.org.merg.jfcu.controller;
 
-import java.io.File;
 import java.io.FileNotFoundException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,12 +37,13 @@ public class ModuleTypeDataCache {
 		if (cache.containsKey(name)) {
 			return cache.get(name);
 		}
-		File file = new File("resource/modules/"+name+".xml");
+		URL url = ModuleTypeDataCache.class.getResource("/modules/"+name+".xml");
+		if (url == null) return null;
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(ModuleType.class);
 
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			ModuleType moduleType = (ModuleType) jaxbUnmarshaller.unmarshal(file);
+			ModuleType moduleType = (ModuleType) jaxbUnmarshaller.unmarshal(url);
 //			Nv nv = new Nv();
 //			nv.setDescription("An Nv");
 //			nv.setName("NV#1");

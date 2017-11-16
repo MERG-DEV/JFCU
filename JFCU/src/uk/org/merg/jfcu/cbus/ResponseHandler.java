@@ -9,6 +9,8 @@ import co.uk.ccmr.cbus.sniffer.CbusEvent.MinPri;
 import co.uk.ccmr.cbus.sniffer.CbusEvent.MjPri;
 import javafx.application.Platform;
 import uk.org.merg.jfcu.cbus.cbusdefs.CbusProperties;
+import uk.org.merg.jfcu.layoutmodel.Event;
+import uk.org.merg.jfcu.layoutmodel.Event.Etype;
 import uk.org.merg.jfcu.layoutmodel.Module;
 
 public class ResponseHandler implements CbusReceiveListener {
@@ -21,6 +23,7 @@ public class ResponseHandler implements CbusReceiveListener {
 		Module m;
 		int nn;
 		CbusEvent msg;
+		Event evt;
 		
 		System.out.println("GOT A MESSAGE "+ce.getOpc());
 		try {
@@ -30,7 +33,8 @@ public class ResponseHandler implements CbusReceiveListener {
 			e.printStackTrace();
 		}
 		
-		if (ce.getOpc() == Opc.PNN) {
+		switch (ce.getOpc()) {
+		case PNN:
 			// response to a QNN
 			//Find or Create a module
 			nn = ce.getNN();
@@ -59,9 +63,6 @@ public class ResponseHandler implements CbusReceiveListener {
 			msg.setData(2, CbusProperties.MAJOR_VERSION.getValue());		// param 7 is the major version
 			Comms.theDriver.queueForTransmit(msg);
 			return;
-		}
-		
-		switch (ce.getOpc()) {
 		case PARAN:
 			// response to RQNPN
 			nn = ce.getNN();
@@ -207,6 +208,31 @@ public class ResponseHandler implements CbusReceiveListener {
 				Comms.theDriver.queueForTransmit(msg);
 			}
 			break;
+		case ACON:
+		case ACON1:
+		case ACON2:
+		case ACON3:
+			evt = new Event();
+			evt.setNn(ce.getNN());
+			evt.setEn(ce.getDN());
+			evt.setLength(Etype.LONG);
+			if (! Globals.layout.getEvents().contains(evt)) {
+				Globals.layout.getEvents().add(evt);
+			}
+			break;
+		case ASON:
+		case ASON1:
+		case ASON2:
+		case ASON3:
+			evt = new Event();
+			evt.setNn(0);
+			evt.setEn(ce.getDN());
+			evt.setLength(Etype.SHORT);
+			if (! Globals.layout.getEvents().contains(evt)) {
+				Globals.layout.getEvents().add(evt);
+			}
+			break;
+		
 		case CMDERR:
 			try {
 				Globals.log.insertString(0, "CMDERR"+ce.getData(3)+"\n", Globals.redAset);
