@@ -6,9 +6,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class NvByte {
+public class MyByte {
 	private int id;
-	private List<NvBits> nvbits;
+	private List<Bits> bits;
 
 	
 	public int getId() {
@@ -20,18 +20,18 @@ public class NvByte {
 	}
 	
 	
-	public List<NvBits> getNvbits() {
-		return nvbits;
+	public List<Bits> getBits() {
+		return bits;
 	}
 	@XmlElement
-	public void setNvbits(List<NvBits> nvbits) {
-		this.nvbits = nvbits;
+	public void setBits(List<Bits> bits) {
+		this.bits = bits;
 	}
 	
 	
 	@Override
 	public String toString() {
-		return "Nv [bits=" + nvbits + ", id=" + id + "]";
+		return "Nv [bits=" + bits + ", id=" + id + "]";
 	}
 	
 }

@@ -4,11 +4,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class NvBits {
+public class Bits {
 	private int bitmask;
 	private String name;
 	private String description;
-	private NvType nvType;
+	private Type type;
 	
 	
 	public int getBitmask() {
@@ -38,17 +38,17 @@ public class NvBits {
 	}
 	
 	
-	public NvType getNvType() {
-		return nvType;
+	public Type getType() {
+		return type;
 	}
-	@XmlElement(name="nvtype")
-	public void setNvType(NvType nvType) {
-		this.nvType = nvType;
+	@XmlElement(name="type")
+	public void setType(Type type) {
+		this.type = type;
 	}
 	
 	@Override
 	public String toString() {
-		return "NvBits [bitmask=" + bitmask + ", name=" + name + ", description=" + description + ", nvType=" + nvType
+		return "Bits [bitmask=" + bitmask + ", name=" + name + ", description=" + description + ", type=" + type
 				+ "]";
 	}
 }

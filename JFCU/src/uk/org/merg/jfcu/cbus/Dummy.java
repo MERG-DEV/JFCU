@@ -17,8 +17,8 @@ public class Dummy {
 		m.setNodeNumber((short) 1111);
 		m.setCanid(1);
 		m.getParams().put(CbusProperties.MODULEID.getValue(),32);
-		m.getParams().put(CbusProperties.MAJOR_VERSION.getValue(),1);
-		m.getParams().put(CbusProperties.MINOR_VERSION.getValue(),(int)'d');
+		m.getParams().put(CbusProperties.MAJOR_VERSION.getValue(),2);
+		m.getParams().put(CbusProperties.MINOR_VERSION.getValue(),(int)'a');
 		m.getParams().put(CbusProperties.NUM_NV.getValue(),127);	
 		m.getParams().put(CbusProperties.MANUFACTURER.getValue(),165);
 		m.getParams().put(CbusProperties.PROC_MANU.getValue(),1);

@@ -15,6 +15,8 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -36,6 +38,7 @@ import uk.org.merg.jfcu.layoutmodel.Layout;
 import uk.org.merg.jfcu.modulemodel.ModuleDefs;
 
 public class JFCUfx extends Application {
+	protected static final String VERSION = "Version dated 19/11/2017";
 	private String portText;
 	public static Stage stage;
 	
@@ -175,6 +178,15 @@ public class JFCUfx extends Application {
         
         Menu menuLogging = new Menu("Logging");
         Menu menuHelp = new Menu("Help");
+        mi = new MenuItem("Version");
+        mi.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setContentText(VERSION);
+				alert.showAndWait();
+			}});
+        menuHelp.getItems().add(mi);
         mi = new MenuItem("Dump Layout");
         mi.setOnAction(new EventHandler<ActionEvent>() {
 			@Override

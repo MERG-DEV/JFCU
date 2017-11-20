@@ -3,11 +3,11 @@ package uk.org.merg.jfcu.modulemodel;
 import javax.swing.ListModel;
 import javax.swing.event.ListDataListener;
 
-public class NvChoiceListModel implements ListModel<NvItem> {
+public class NvChoiceListModel implements ListModel<Item> {
 
-	private NvChoice nvChoice;
+	private Choice nvChoice;
 
-	public NvChoiceListModel(NvChoice nvChoice) {
+	public NvChoiceListModel(Choice nvChoice) {
 		this.nvChoice = nvChoice;
 	}
 	
@@ -18,13 +18,13 @@ public class NvChoiceListModel implements ListModel<NvItem> {
 	}
 
 	@Override
-	public NvItem getElementAt(int i) {
-		return nvChoice.getNvitems().get(i);
+	public Item getElementAt(int i) {
+		return nvChoice.getItems().get(i);
 	}
 
 	@Override
 	public int getSize() {
-		return nvChoice.getNvitems().size();
+		return nvChoice.getItems().size();
 	}
 
 	@Override

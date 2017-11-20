@@ -42,6 +42,33 @@
 	-fx-background-insets: 0, 1 ;
 }
 
+
+
+.evgroup {
+	-fx-border-color : #808080;
+	-fx-border-style: solid;
+}
+.evGrid {
+    -fx-padding: 10;
+    -fx-background-color: white;
+}
+.evGroupTitle	{
+	-fx-font-size : 1.3em;
+}
+.evHeader	{
+	-fx-font-weight : bold;
+	-fx-font-size : 1.1em;
+	-fx-background-color: black, #e0e0e0 ;
+	-fx-background-insets: 0, 1 ;
+}
+.evGroupCell {
+	-fx-background-color: black, #e0e0e0;
+	-fx-background-insets: 0, 1 ;
+}
+
+
+
+
 .popup {
 	-fx-background-color : #e0e0e0;
 }

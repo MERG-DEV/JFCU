@@ -1,6 +1,5 @@
 package uk.org.merg.jfcu.modulemodel;
 
-import java.util.HashMap;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -12,34 +11,41 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType (XmlAccessType.FIELD)
 public class ModuleType {
 	@XmlElementWrapper(name="nvtabs")
-	@XmlElement(name="tab")
-	private List<NvTab> tabs;
-	private HashMap<Short, ProducedAction> defaultProducedEvents;
-	private HashMap<Short, ConsumedAction> defaultConsumedEvents;
+	@XmlElement(name="nvtab")
+	private List<NvTab> nvTabs;
+	
+	@XmlElementWrapper(name="producedevents")
+	@XmlElement(name="evtab")
+	private List<EvTab> producedTabs;
+	
+	@XmlElementWrapper(name="consumedevents")
+	@XmlElement(name="evtab")
+	private List<EvTab> consumedTabs;
+	
 	private String nvEditWindowPlugin;
 	
-	public List<NvTab> getTabs() {
-		return tabs;
+	public List<NvTab> getNvTabs() {
+		return nvTabs;
 	}
-	public void setTabs(List<NvTab> t) {
-		this.tabs = t;
-	}
-	
-	
-	public HashMap<Short, ProducedAction> getDefaultProducedEvents() {
-		return defaultProducedEvents;
-	}
-	public void setDefaultProducedEvents(HashMap<Short, ProducedAction> defaultProducedEvents) {
-		this.defaultProducedEvents = defaultProducedEvents;
+	public void setNvTabs(List<NvTab> t) {
+		this.nvTabs = t;
 	}
 	
 	
-	public HashMap<Short, ConsumedAction> getDefaultConsumedEvents() {
-		return defaultConsumedEvents;
+	public List<EvTab> getProducedEvents() {
+		return producedTabs;
 	}
-	public void setDefaultConsumedEvents(HashMap<Short, ConsumedAction> defaultConsumedEvents) {
-		this.defaultConsumedEvents = defaultConsumedEvents;
+	public void setProducedEvents(List<EvTab> et) {
+		this.producedTabs = et;
 	}
+	
+	public List<EvTab> getConsumedEvents() {
+		return consumedTabs;
+	}
+	public void setConsumedEvents(List<EvTab> et) {
+		this.consumedTabs = et;
+	}
+	
 	
 	public String getNvEditWindowPlugin() {
 		return nvEditWindowPlugin;
@@ -50,7 +56,6 @@ public class ModuleType {
 	
 	@Override
 	public String toString() {
-		return "ModuleType [ tabs=" + tabs + ", defaultProducedEvents="
-				+ defaultProducedEvents + ", defaultConsumedEvents=" + defaultConsumedEvents + "]";
+		return "ModuleType [ nvTabs=" + nvTabs + ", producedTabs=" + producedTabs + ", consumedTabs=" + consumedTabs + "]";
 	}
 }

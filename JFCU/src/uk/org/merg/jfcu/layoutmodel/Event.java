@@ -14,7 +14,14 @@ import javafx.beans.property.StringProperty;
 public class Event {
 	public enum Etype {
 		LONG,
-		SHORT
+		SHORT;
+
+		public static Etype fromString(String s) {
+			for (Etype e : Etype.values()) {
+				if (e.toString().equals(s)) return e;
+			}
+			return null;
+		}
 	}
 	private IntegerProperty id;
 	private StringProperty name;
@@ -121,5 +128,29 @@ public class Event {
 	@Override
 	public int hashCode() {
 		return nn.get()*en.get()+(length.get()==Etype.LONG?1:0);
+	}
+
+
+	public String toSerialised() {
+		return name.get()+":"+length.get()+":"+nn.get()+":"+en.get();
+	}
+	
+	public static Event fromSerialised(String s) {
+		String [] parts = s.split(":");
+		if (parts.length != 4) return null;
+		int thisnn = Integer.parseInt(parts[2]);
+		int thisen = Integer.parseInt(parts[3]);
+		Etype thislength = Etype.fromString(parts[1]);
+		Event e = new Event();
+		e.setName(parts[0]);
+		e.setLength(thislength);
+		e.setNn(thisnn);
+		e.setEn(thisen);
+		return e;
+	}
+	
+	@Override
+	public String toString() {
+		return "[Event="+name.get()+":"+length.get()+":"+nn.get()+":"+en.get()+"]";
 	}
 }

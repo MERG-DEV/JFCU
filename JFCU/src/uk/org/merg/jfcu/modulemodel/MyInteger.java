@@ -6,24 +6,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType (XmlAccessType.FIELD)
-public class NvInteger {
-	private int nvMin;
-	private int nvMax;
+public class MyInteger {
+	private int min;
+	private int max;
 	
 	
-	public int getNvMin() {
-		return nvMin;
+	public int getMin() {
+		return min;
 	}
-	public void setNvMin(int nvMin) {
-		this.nvMin = nvMin;
+	public void setMin(int min) {
+		this.min = min;
 	}
 	
 	
-	public int getNvMax() {
-		return nvMax;
+	public int getMax() {
+		return max;
 	}
-	public void setNvMax(int nvMax) {
-		this.nvMax = nvMax;
+	public void setMax(int max) {
+		this.max = max;
 	}
 	
 }

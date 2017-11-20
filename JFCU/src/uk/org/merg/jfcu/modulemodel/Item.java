@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType (XmlAccessType.FIELD)
-public class NvItem {
+public class Item {
 	private String setting;
 	private int value;
 	public String getSetting() {

@@ -1,10 +1,15 @@
 package uk.org.merg.jfcu.ui.javafx;
 
+import javafx.event.EventHandler;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import uk.org.merg.jfcu.cbus.Globals;
 import uk.org.merg.jfcu.layoutmodel.Event;
 
@@ -43,5 +48,21 @@ public class EventListTable extends TableView<Event> {
         setTableMenuButtonVisible(true);
         
         getColumns().setAll(nameCol, lengthCol, nnCol, enCol);
+        
+        setOnDragDetected(new EventHandler<MouseEvent>() { //drag
+            @Override
+            public void handle(MouseEvent event) {
+                // drag was detected, start drag-and-drop gesture
+                String selected = getSelectionModel().getSelectedItem().toSerialised();
+                if(selected !=null){
+                	System.out.println("Drag of Event started = "+selected);
+                    Dragboard db = startDragAndDrop(TransferMode.ANY);
+                    ClipboardContent content = new ClipboardContent();
+                    content.putString(selected);
+                    db.setContent(content);
+                    event.consume(); 
+                }
+            }
+        });
 	}
 }

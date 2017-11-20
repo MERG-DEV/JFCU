@@ -10,32 +10,30 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType (XmlAccessType.FIELD)
-public class NvGroup {
-	@XmlElementWrapper(name="nvs")
-	@XmlElement(name="nvbyte")
-	private List<NvByte> nvs;
+public class EvTab {
+	@XmlElementWrapper(name="groups")
+	@XmlElement(name="group")
+	private List<Group> groups;
 	private String name;
 
-	public List<NvByte> getNvs() {
-		return nvs;
+	public List<Group> getGroups() {
+		return groups;
 	}
-	public void setNvs(List<NvByte> nvs) {
-		this.nvs = nvs;
+	public void setEvGroups(List<Group> groups) {
+		this.groups = groups;
 	}
-	
-	
+		
+		
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+		
+		
 	@Override
 	public String toString() {
-		return "NvGroup [nvs=" + nvs + ", name=" + name + "]";
+		return "NvGroup [groups=" + groups + ", name=" + name + "]";
 	}
-	
-	
 }

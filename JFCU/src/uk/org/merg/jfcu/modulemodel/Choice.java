@@ -8,16 +8,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType (XmlAccessType.FIELD)
-public class NvChoice {
-	@XmlElement(name="nvitem")
-	private List<NvItem>	nvitems;
+public class Choice {
+	@XmlElement(name="item")
+	private List<Item> items;
 
 	
-	public List<NvItem> getNvitems() {
-		return nvitems;
+	public List<Item> getItems() {
+		return items;
 	}
-	public void setNvitems(List<NvItem> nvitems) {
-		this.nvitems = nvitems;
+	public void setNvitems(List<Item> items) {
+		this.items = items;
 	}
 	
 	

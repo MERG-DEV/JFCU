@@ -1,5 +1,9 @@
 package uk.org.merg.jfcu.ui.javafx;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -22,14 +26,19 @@ import uk.org.merg.jfcu.cbus.cbusdefs.CbusProperties;
 import uk.org.merg.jfcu.controller.ModuleTypeDataCache;
 import uk.org.merg.jfcu.layoutmodel.Module;
 import uk.org.merg.jfcu.modulemodel.ModuleType;
-import uk.org.merg.jfcu.modulemodel.NvBits;
-import uk.org.merg.jfcu.modulemodel.NvByte;
-import uk.org.merg.jfcu.modulemodel.NvGroup;
-import uk.org.merg.jfcu.modulemodel.NvItem;
-import uk.org.merg.jfcu.modulemodel.NvTab;
+import uk.org.merg.jfcu.modulemodel.Bits;
+import uk.org.merg.jfcu.modulemodel.EvTab;
+import uk.org.merg.jfcu.modulemodel.MyByte;
+import uk.org.merg.jfcu.modulemodel.Group;
+import uk.org.merg.jfcu.modulemodel.Item;
+import uk.org.merg.jfcu.events.ByteOp;
 
-public class EditNvPanel extends VBox {
-	public EditNvPanel(Popup parentPopup, Module m) {
+public class EditEvPopup extends VBox {
+	private Map<Integer, ByteOp> evOps;
+	
+	public EditEvPopup(Popup parentPopup, Module m, List<EvTab> tabs) {
+		evOps = new HashMap<Integer, ByteOp>();
+		
 		getStyleClass().add("popup");
 		TabPane tabPane = new TabPane();
 		tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
@@ -42,115 +51,112 @@ public class EditNvPanel extends VBox {
 			return;
 		}
 		System.out.println("m="+m);
-		ModuleType mt = ModuleTypeDataCache.get(m.getModuleTypeName(), 
+		ModuleType moduleType = ModuleTypeDataCache.get(m.getModuleTypeName(), 
 				m.getParams().get(CbusProperties.MAJOR_VERSION.getValue()).intValue(), 
 				(char) m.getParams().get(CbusProperties.MINOR_VERSION.getValue()).intValue());
-		if (mt == null) {
+		if (moduleType == null) {
 			Alert alert = new Alert(AlertType.ERROR, "Modules of type \""+typeName+"\" are not currently supported.");
 			alert.showAndWait();
 		} else {
-			for (NvTab nvTab : mt.getTabs()) {
+			for (EvTab evTab : tabs) {
 				Tab tab = new Tab();
-				tab.setText(nvTab.getName());
+				tab.setText(evTab.getName());
 				tabPane.getTabs().add(tab);
 				VBox scrollBox = new VBox();
-				for (NvGroup group : nvTab.getNvGroups()) {
+				for (Group group : evTab.getGroups()) {
 					VBox groupBox = new VBox();
-					groupBox.getStyleClass().add("nvgroup");
+					groupBox.getStyleClass().add("evgroup");
 					Label l;
 					StackPane sp;
 				
 					l = new Label(group.getName());
-					l.getStyleClass().add("nvGroupTitle");
+					l.getStyleClass().add("evGroupTitle");
 					groupBox.getChildren().add(l);
 			
-					GridPane nvGrid = new GridPane();
-					nvGrid.getStyleClass().add("nvGrid");
+					GridPane evGrid = new GridPane();
+					evGrid.getStyleClass().add("evGrid");
 					// do the titles
-					l = new Label("NV #");
+					l = new Label("EV #");
 					sp = new StackPane();
-					sp.getStyleClass().add("nvHeader");
+					sp.getStyleClass().add("evHeader");
 					sp.getChildren().add(l);
-					nvGrid.add(sp, 0, 0);
+					evGrid.add(sp, 0, 0);
 			
 					l = new Label("Name");
 					sp = new StackPane();
-					sp.getStyleClass().add("nvHeader");
+					sp.getStyleClass().add("evHeader");
 					sp.getChildren().add(l);
-					nvGrid.add(sp, 1, 0);
+					evGrid.add(sp, 1, 0);
 				
 					l = new Label("Value");
 					sp = new StackPane();
-					sp.getStyleClass().add("nvHeader");
+					sp.getStyleClass().add("evHeader");
 					sp.getChildren().add(l);
-					nvGrid.add(sp, 2, 0);
+					evGrid.add(sp, 2, 0);
 			
 					l = new Label("Description");
 					sp = new StackPane();
-					sp.getStyleClass().add("nvHeader");
+					sp.getStyleClass().add("evHeader");
 					sp.getChildren().add(l);
-					nvGrid.add(sp, 3, 0);
+					evGrid.add(sp, 3, 0);
 			
 					int idx = 1;
-					for (NvByte nvByte: group.getNvs()) {
-						for (NvBits nvBits : nvByte.getNvbits()) {
+					for (MyByte evByte: group.getBytes()) {
+						for (Bits evBits : evByte.getBits()) {
 							// the id
-							l = new Label(""+nvByte.getId());
+							l = new Label(""+evByte.getId());
 							sp = new StackPane();
-							sp.getStyleClass().add("nvGroupCell");
+							sp.getStyleClass().add("evGroupCell");
 							sp.getChildren().add(l);
-							nvGrid.add(sp, 0,  idx);
+							evGrid.add(sp, 0,  idx);
 							// the name
-							l = new Label(nvBits.getName());
+							l = new Label(evBits.getName());
 							sp = new StackPane();
-							sp.getStyleClass().add("nvGroupCell");
+							sp.getStyleClass().add("evGroupCell");
 							sp.getChildren().add(l);
-							nvGrid.add(sp, 1,  idx);
-							// the value
-							Integer nvVal = m.getNvs().get(nvByte.getId());
+							evGrid.add(sp, 1,  idx);
+
 							Byte v = 0;
-							if (nvVal != null) {
-								v = nvVal.byteValue();
-							}
-							if ((nvBits.getNvType().getUi() == null) || "text".equals(nvBits.getNvType().getUi())) {
-								TextField valueCell = new TextField(""+(v&nvBits.getBitmask()));
+							
+							if ((evBits.getType().getUi() == null) || "text".equals(evBits.getType().getUi())) {
+								TextField valueCell = new TextField(""+(v&evBits.getBitmask()));
 								sp = new StackPane();
-								sp.getStyleClass().add("nvGroupCell");
+								sp.getStyleClass().add("evGroupCell");
 								sp.getChildren().add(valueCell);
 								valueCell.setMaxWidth(40);
-								nvGrid.add(sp, 2,  idx);
-							} else if ("choice".equals(nvBits.getNvType().getUi())) {
+								evGrid.add(sp, 2,  idx);
+							} else if ("choice".equals(evBits.getType().getUi())) {
 								ComboBox<String> combo = new ComboBox<String>();
-								for (NvItem i : nvBits.getNvType().getNvChoice().getNvitems()) {
+								for (Item i : evBits.getType().getChoice().getItems()) {
 									combo.getItems().add(i.getSetting());
 									if (v == i.getValue()) {
 										combo.getSelectionModel().select(i.getSetting());
 									}
 								}
 								sp = new StackPane();
-								sp.getStyleClass().add("nvGroupCell");
+								sp.getStyleClass().add("evGroupCell");
 								sp.getChildren().add(combo);
-								nvGrid.add(sp, 2,  idx);
-							} else if ("checkbox".equals(nvBits.getNvType().getUi())) {
+								evGrid.add(sp, 2,  idx);
+							} else if ("checkbox".equals(evBits.getType().getUi())) {
 								CheckBox valueCell = new CheckBox();
-								valueCell.setSelected((v&nvBits.getBitmask()) != 0);
+								valueCell.setSelected((v&evBits.getBitmask()) != 0);
 								sp = new StackPane();
-								sp.getStyleClass().add("nvGroupCell");
+								sp.getStyleClass().add("evGroupCell");
 								sp.getChildren().add(valueCell);
-								nvGrid.add(sp, 2,  idx);
+								evGrid.add(sp, 2,  idx);
 							}
 					
 							// the description
-							l = new Label(nvBits.getDescription());
+							l = new Label(evBits.getDescription());
 							sp = new StackPane();
-							sp.getStyleClass().add("nvGroupCell");
+							sp.getStyleClass().add("evGroupCell");
 							sp.getChildren().add(l);
-							nvGrid.add(sp, 3,  idx);
+							evGrid.add(sp, 3,  idx);
 					
 							idx++;
 						}
 					}
-					groupBox.getChildren().add(nvGrid);
+					groupBox.getChildren().add(evGrid);
 					scrollBox.getChildren().add(groupBox);
 					tab.setContent(scrollBox);
 				}
@@ -180,5 +186,9 @@ public class EditNvPanel extends VBox {
 		
 			getChildren().addAll(scrollPane, buttons);
 		}
+	}
+	
+	public Map<Integer, ByteOp> getEvOps() {
+		return evOps;
 	}
 }

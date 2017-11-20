@@ -8,6 +8,8 @@ import java.util.Map;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.ValidationEvent;
+import javax.xml.bind.ValidationEventHandler;
 
 import uk.org.merg.jfcu.modulemodel.ModuleType;
 
@@ -43,6 +45,12 @@ public class ModuleTypeDataCache {
 			JAXBContext jaxbContext = JAXBContext.newInstance(ModuleType.class);
 
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+			jaxbUnmarshaller.setEventHandler(new ValidationEventHandler() {
+				@Override
+				public boolean handleEvent(ValidationEvent ve) {
+					System.err.println(ve);
+					return false;
+				}});
 			ModuleType moduleType = (ModuleType) jaxbUnmarshaller.unmarshal(url);
 //			Nv nv = new Nv();
 //			nv.setDescription("An Nv");
