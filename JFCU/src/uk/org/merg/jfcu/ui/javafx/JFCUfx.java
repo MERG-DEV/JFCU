@@ -38,7 +38,7 @@ import uk.org.merg.jfcu.layoutmodel.Layout;
 import uk.org.merg.jfcu.modulemodel.ModuleDefs;
 
 public class JFCUfx extends Application {
-	protected static final String VERSION = "Version dated 19/11/2017";
+	protected static final String VERSION = "Version dated 21/11/2017";
 	private String portText;
 	public static Stage stage;
 	
