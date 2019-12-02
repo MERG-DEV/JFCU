@@ -18,7 +18,6 @@ public class ResponseHandler implements CbusReceiveListener {
 	private final static int PNN_MODULE_ID = 3;
 //	private final static int PNN_FLAGS = 4;
 
-	@Override
 	public void receiveMessage(CbusEvent ce) {
 		Module m;
 		int nn;
@@ -47,7 +46,6 @@ public class ResponseHandler implements CbusReceiveListener {
 			m.setCanid(ce.getCANID());
 			m.getParams().put(CbusProperties.MODULEID.getValue(), ce.getData(PNN_MODULE_ID));		// module ID in data 3
 			Platform.runLater(new ModuleRunner(m){
-				@Override
 				public void run() {
 					Globals.layout.getModules().add(this.m);
 				}});
@@ -185,10 +183,9 @@ public class ResponseHandler implements CbusReceiveListener {
 			if (nn < 0) nn += 65536;
 			m = Globals.layout.findModule(nn);
 			if (m == null) 	return;
-			int nvNo = ce.getData(2);
-			byte nvVal = (byte) ce.getData(3);
+			final int nvNo = ce.getData(2);
+			final byte nvVal = (byte) ce.getData(3);
 			Platform.runLater(new ModuleRunner(m){
-				@Override
 				public void run() {
 					System.out.println("Got an NV "+nvNo+"="+nvVal);
 					m.getNvs().put(nvNo, (int)nvVal);
@@ -246,7 +243,6 @@ public class ResponseHandler implements CbusReceiveListener {
 		
 	}
 
-	@Override
 	public void receiveString(String input) {
 		
 	}
@@ -267,7 +263,6 @@ public class ResponseHandler implements CbusReceiveListener {
 			this.idx= idx;
 			this.val = val;
 		}
-		@Override
 		public void run() {
 			m.getParams().put(idx,val);
 		}
