@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.UnmarshalException;
 import javax.xml.bind.ValidationEvent;
 import javax.xml.bind.ValidationEventHandler;
 
@@ -51,7 +52,13 @@ public class ModuleTypeDataCache {
 					System.err.println(ve);
 					return false;
 				}});
-			ModuleType moduleType = (ModuleType) jaxbUnmarshaller.unmarshal(url);
+			ModuleType moduleType = null;
+			try {
+				moduleType = (ModuleType) jaxbUnmarshaller.unmarshal(url);
+			} catch (UnmarshalException ue) {
+				System.out.println("ERROR failed to ummarshall "+url);
+				return null;
+			}
 //			Nv nv = new Nv();
 //			nv.setDescription("An Nv");
 //			nv.setName("NV#1");

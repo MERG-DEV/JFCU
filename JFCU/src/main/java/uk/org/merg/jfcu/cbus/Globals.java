@@ -17,9 +17,9 @@ public class Globals {
 
 	public static Layout layout;
 	
-	public static StyledDocument log;
-	public static AttributeSet redAset;
-	public static AttributeSet greenAset;
+	public static StyledDocument log = null;
+	public static AttributeSet redAset = null;
+	public static AttributeSet greenAset = null;
 	
 	public static ModuleTypeNames moduleTypeNames;
 	public static void init(StyledDocument styledDocument) {
