@@ -11,6 +11,9 @@
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
+		<accessrules>
+			<accessrule kind="accessible" pattern="javax/xml/**"/>
+		</accessrules>
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/Cbus-github"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/CbusIO-github"/>

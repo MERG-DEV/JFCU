@@ -7,8 +7,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @XmlAccessorType (XmlAccessType.FIELD)
 public class MyInteger {
-	private int min;
-	private int max;
+	private int min = 0;
+	private int max = 255;
 	
 	
 	public int getMin() {

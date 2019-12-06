@@ -1,7 +1,5 @@
 package uk.org.merg.jfcu.ui.javafx;
 
-import java.util.Map;
-
 import co.uk.ccmr.cbus.sniffer.CbusEvent;
 import co.uk.ccmr.cbus.sniffer.Opc;
 import co.uk.ccmr.cbus.sniffer.CbusEvent.MinPri;
@@ -19,10 +17,8 @@ import javafx.util.Callback;
 import uk.org.merg.jfcu.cbus.Comms;
 import uk.org.merg.jfcu.cbus.Globals;
 import uk.org.merg.jfcu.cbus.cbusdefs.CbusProperties;
-import uk.org.merg.jfcu.controller.ModuleTypeDataCache;
-import uk.org.merg.jfcu.events.ByteOp;
 import uk.org.merg.jfcu.layoutmodel.Module;
-import uk.org.merg.jfcu.modulemodel.ModuleType;
+
 
 public class NodeListCallback implements Callback<TableView<Module>, TableRow<Module>> {
 	public TableRow<Module> call(TableView<Module> tableView) {

@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Bits {
-	private int bitmask;
+	private int bitmask = 0xFF;
 	private String name;
 	private String description;
 	private Type type;
