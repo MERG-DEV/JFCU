@@ -20,6 +20,7 @@ public class ByteOp {
 	public int asInt() {
 		int ret = 0;
 		for (int i=0; i<8; i++) {
+			if (bitOps[i] == null) continue;
 			switch (bitOps[i]) {
 			case SET:
 				ret |= (1<<i);
