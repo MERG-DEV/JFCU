@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class Test_ByteOps {
 
 	@ParameterizedTest
-	@ValueSource(ints = {-127, -1, 8, 128})
+	@ValueSource(ints = {Integer.MIN_VALUE, -1, 8, Integer.MAX_VALUE})
 	void test_getBitException(int number) {
 		ByteOp byteOp = new ByteOp();
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -27,7 +27,7 @@ public class Test_ByteOps {
 	}
 	
 	@ParameterizedTest
-	@ValueSource(ints = {-127, -1, 8, 128})
+	@ValueSource(ints = {Integer.MIN_VALUE, -1, 8, Integer.MAX_VALUE})
 	void test_ClearException(int number) {
 		ByteOp byteOp = new ByteOp();
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -45,7 +45,7 @@ public class Test_ByteOps {
 	}
 	
 	@ParameterizedTest
-	@ValueSource(ints = {-127, -1, 8, 128})
+	@ValueSource(ints = {Integer.MIN_VALUE, -1, 8, Integer.MAX_VALUE})
 	void test_SetException(int number) {
 		ByteOp byteOp = new ByteOp();
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -62,7 +62,7 @@ public class Test_ByteOps {
 	}
 
 	@ParameterizedTest
-	@ValueSource(ints = {-127, -1, 8, 128})
+	@ValueSource(ints = {Integer.MIN_VALUE, -1, 8, Integer.MAX_VALUE})
 	void test_UnchangedException(int number) {
 		ByteOp byteOp = new ByteOp();
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
