@@ -5,6 +5,9 @@ public class ByteOp {
 	
 	public ByteOp() {
 		bitOps = new BitOp[8];
+		for (int i=0; i<8; i++) {
+			bitOps[i] = BitOp.UNCHANGED;
+		}
 	}
 	
 	public BitOp getBit(int b) {
