@@ -57,15 +57,11 @@ public class JFCUfx extends Application {
             stage.setHeight(600);
             stage.setWidth(800);
             
-//            URL url = JFCUfx.class.getResource(
-//                    "/css/jfcu.css");
-//            scene.getStylesheets().add(url.toString());
-
             MenuBar menuBar = new MenuBar();
             menuBar.setId("menuBar");
 
-    		  Menu menuFile = new Menu("File");
-    		  menuFile.setId("fileMenu");
+   		  	Menu menuFile = new Menu("File");
+   		  	menuFile.setId("fileMenu");
             
             MenuItem mi = new MenuItem("Open...");
             mi.setOnAction(new EventHandler<ActionEvent>() {
@@ -307,7 +303,7 @@ public class JFCUfx extends Application {
             bottomBox.getChildren().add(portLabelBox);
             bottomBox.setId("bottomBox");
             
-        getChildren().addAll(menuBar, hbox, bottomBox);
+            getChildren().addAll(menuBar, hbox, bottomBox);
     	}
     }
 
@@ -315,10 +311,12 @@ public class JFCUfx extends Application {
 
 //	@Override
 	public void start(Stage stage) {
-		//
+		
 		stage.setScene(new Scene(new MainPane(stage)));
+        URL url = JFCUfx.class.getResource("/css/jfcu.css");
+		stage.getScene().getStylesheets().add(url.toString());
 		stage.show();
-		//
+		
 		JFCUfx.stage = stage;
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			@Override
