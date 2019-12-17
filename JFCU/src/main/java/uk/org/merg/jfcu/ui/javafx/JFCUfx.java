@@ -51,6 +51,10 @@ public class JFCUfx extends Application {
     	public MainPane(final Stage myStage)
     	{
             super();
+            
+            URL url = JFCUfx.class.getResource("/css/jfcu.css");
+	        this.getStylesheets().add(url.toString());
+
             Stage stage = myStage;
    		    stage.setTitle("JavaFX FLiM Configuration Utility");
             scene = stage.getScene();
@@ -313,8 +317,6 @@ public class JFCUfx extends Application {
 	public void start(Stage stage) {
 		
 		stage.setScene(new Scene(new MainPane(stage)));
-        URL url = JFCUfx.class.getResource("/css/jfcu.css");
-		stage.getScene().getStylesheets().add(url.toString());
 		stage.show();
 		
 		JFCUfx.stage = stage;
